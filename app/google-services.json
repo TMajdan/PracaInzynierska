@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "799008395115",
+    "firebase_url": "https://pracainzynierska-f1b54.firebaseio.com",
+    "project_id": "pracainzynierska-f1b54",
+    "storage_bucket": "pracainzynierska-f1b54.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799008395115:android:eb99a8ccc20fc609",
+        "android_client_info": {
+          "package_name": "com.example.tomaszmajdan.pracainzynierska"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "799008395115-biu734papoipko0s1om4dq1vra7k78es.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.tomaszmajdan.pracainzynierska",
+            "certificate_hash": "226c54ef4239f35084f4d5279cf780fafabb09ba"
+          }
+        },
+        {
+          "client_id": "799008395115-ltiudciupjqgeq5hj86f8jb01usk3dq0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAdZcyMXVvmlmCRsTzf7szA-eQcfLTsaw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "799008395115-ltiudciupjqgeq5hj86f8jb01usk3dq0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
