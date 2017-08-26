@@ -15,6 +15,7 @@ public class MainPage extends AppCompatActivity implements View.OnClickListener 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
 
+
     //view objects
     private TextView textViewUserEmail;
     private Button buttonLogout;

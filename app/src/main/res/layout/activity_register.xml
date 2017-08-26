@@ -31,10 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Logowanie"
+            android:text="Rejestracja"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal" />
-
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -44,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Email"
+            android:hint="Wpisz Email"
             android:inputType="textEmailAddress" />
         </android.support.design.widget.TextInputLayout>
 
@@ -56,36 +55,34 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:hint="Hasło"
+            android:hint="Wpisz hasło"
             android:inputType="textPassword" />
         </android.support.design.widget.TextInputLayout>
 
         <Button
-            android:id="@+id/buttonSignin"
+            android:id="@+id/buttonSignup"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
             android:background="@color/colorAccent"
-            android:text="Zaloguj"
+            android:text="Zarejestruj"
             android:textColor="@android:color/black" />
 
-        <Button
-            android:id="@+id/buttonForgotPsw"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="Zapomniałeś hasła?"
-            android:textAllCaps="false"
-            android:textColor="@color/colorAccent" />
-
         <TextView
-            android:text="Nie masz konta? Zarejestruj się tutaj!"
-            android:id="@+id/textViewSignUp"
+            android:text="Posiadasz już konto? Zaloguj się tutaj!"
+            android:id="@+id/textViewSignin"
             android:textAlignment="center"
             android:layout_margin="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone" />
 
     </LinearLayout>
 

@@ -1,7 +1,6 @@
 package com.example.tomaszmajdan.pracainzynierska;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +17,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import org.w3c.dom.Text;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.buttonForgotPsw;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.start;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     //defining views
     private Button buttonSignIn;
+    private  Button buttonForgotPsw;
     private EditText editTextEmail;
     private EditText editTextPassword;
     private TextView textViewSignup;
@@ -56,6 +57,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignin);
+        buttonForgotPsw = (Button) findViewById(R.id.buttonForgotPsw);
         textViewSignup  = (TextView) findViewById(R.id.textViewSignUp);
 
         progressDialog = new ProgressDialog(this);
@@ -63,6 +65,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //attaching click listener
         buttonSignIn.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
+        buttonForgotPsw.setOnClickListener(this);
     }
 
     //method for user login
@@ -73,19 +76,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Proszę wpisać email",Toast.LENGTH_LONG).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Proszę wpisać hasło",Toast.LENGTH_LONG).show();
             return;
         }
 
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage("Logowanie, proszę czekać...");
         progressDialog.show();
 
         //logging in the user
@@ -95,14 +98,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         //if the task is successfull
+
+
+
                         if(task.isSuccessful()){
                             //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), MainPage.class));
+
+
+                        } else{
+                            //display some message here
+                            Toast.makeText(LoginActivity.this,"Błąd logowania, sprawdź hasło!",Toast.LENGTH_LONG).show();
                         }
+                        progressDialog.dismiss();
                     }
                 });
-
     }
 
     @Override
@@ -111,9 +122,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             userLogin();
         }
 
+        if(view == buttonForgotPsw){
+            finish();
+            startActivity(new Intent(this, ForgotPasswordActivity.class ));
+
+        }
+
         if(view == textViewSignup){
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, RegisterActivity.class));
         }
     }
 }

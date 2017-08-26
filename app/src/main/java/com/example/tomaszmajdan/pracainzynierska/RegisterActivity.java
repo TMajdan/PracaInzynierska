@@ -17,7 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
     //defining view objects
     private EditText editTextEmail;
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_register);
 
         //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage("Rejestracja, proszę czekać...");
         progressDialog.show();
 
         //creating a new user
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             startActivity(new Intent(getApplicationContext(), UserInfo.class));
                         }else{
                             //display some message here
-                            Toast.makeText(MainActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this,"Błąd rejestracji",Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }
