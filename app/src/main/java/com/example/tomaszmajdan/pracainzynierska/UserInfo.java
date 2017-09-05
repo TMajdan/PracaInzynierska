@@ -82,7 +82,7 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        databaseReference.child(user.getUid()).setValue(userInformation);
+        databaseReference.child("users").child(user.getUid()).setValue(userInformation);
 
         Toast.makeText(this, "Informacje zapisane!", Toast.LENGTH_LONG).show();
     }
