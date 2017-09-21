@@ -1,8 +1,12 @@
 package com.example.tomaszmajdan.pracainzynierska;
 
+
+
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class UserInfo extends AppCompatActivity implements View.OnClickListener {
+public class UserEdit1 extends AppCompatActivity  implements View.OnClickListener {
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
@@ -81,10 +85,39 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
+
+        //  databaseReference.child(user.getUid()).setValue(userInformation);
         databaseReference.child("users").child(user.getUid()).setValue(userInformation);
 
         Toast.makeText(this, "Informacje zapisane!", Toast.LENGTH_LONG).show();
     }
+
+
+    private void showUpdateDialog(String Name)
+    {
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+
+        LayoutInflater inflater = getLayoutInflater();
+
+        final View dialogView = inflater.inflate(R.layout.activity_update_dialog, null);
+
+        dialogBuilder.setView(dialogView);
+
+        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
+
+        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdate);
+
+        AlertDialog alertDialog = dialogBuilder.create();
+
+        alertDialog.show();
+
+
+
+
+
+    }
+
+
 
     @Override
     public void onClick(View view) {
@@ -98,5 +131,10 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
             startActivity(new Intent(this, UserEdit.class));
         }
 
+
+
+
     }
+
+
 }

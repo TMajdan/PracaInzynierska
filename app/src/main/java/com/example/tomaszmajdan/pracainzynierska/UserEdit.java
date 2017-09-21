@@ -1,41 +1,53 @@
 package com.example.tomaszmajdan.pracainzynierska;
 
-
-
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class UserEdit extends AppCompatActivity  implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class UserEdit extends AppCompatActivity implements View.OnClickListener {
+
+
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
+    private FirebaseDatabase mFirebaseDatabase;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference myRef;
+    private String userID;
+    private static final String TAG = "ViewDatabase";
+    private ListView mListView;
 
     //view objects
-    private Button buttonSa;
+    private TextView textViewUserEmail;
+    private Button buttonLogout;
 
-    private DatabaseReference databaseReference;
-
-    private EditText editTextName, editTextSurname, editTextPhone,
-            editTextAddress, editTextZip, editTextPesel, editTextCity;
-    private Button buttonSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_info);
+        setContentView(R.layout.view_database_layout);
+
+        mListView = (ListView) findViewById(R.id.listview);
+        mFirebaseDatabase = FirebaseDatabase.getInstance();
+        myRef = mFirebaseDatabase.getReference();
 
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -49,93 +61,115 @@ public class UserEdit extends AppCompatActivity  implements View.OnClickListener
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        editTextName = (EditText) findViewById(R.id.editTextName);
-        editTextSurname = (EditText) findViewById(R.id.editTextSurname);
-        editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        editTextAddress = (EditText) findViewById(R.id.editTextAddress);
-        editTextZip = (EditText) findViewById(R.id.editTextZip);
-        editTextPesel = (EditText) findViewById(R.id.editTextPesel);
-        editTextCity= (EditText) findViewById(R.id.editTextCity) ;
-
         //getting current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
+        userID = user.getUid();
 
         //initializing views
+        textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
+        buttonLogout = (Button) findViewById(R.id.buttonLogout);
 
-        buttonSa = (Button) findViewById(R.id.buttonSave);
-
+        //displaying logged in user name
+       // textViewUserEmail.setText("Welcome "+user.getEmail());
 
         //adding listener to button
-        buttonSa.setOnClickListener(this);
-    }
+       // buttonLogout.setOnClickListener(this);
 
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    // User is signed in
+                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                    //toastMessage("Successfully signed in with: " + user.getEmail());
+                } else {
+                    // User is signed out
+                    Log.d(TAG, "onAuthStateChanged:signed_out");
+                    // toastMessage("Successfully signed out.");
+                }
+                // ...
+            }
+        };
 
-    private void saveUserInformation()
-    {
-        String name  = editTextName.getText().toString().trim();
-        String surname = editTextSurname.getText().toString().trim();
-        String pesel = editTextPesel.getText().toString().trim();
-        String address = editTextAddress.getText().toString().trim();
-        String city = editTextCity.getText().toString().trim();
-        String phone = editTextPhone.getText().toString().trim();
-        String zip = editTextZip.getText().toString().trim();
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                showData(dataSnapshot);
+            }
 
-        UserInformation userInformation = new UserInformation(name, surname, pesel, phone, city, address, zip);
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-
-        //  databaseReference.child(user.getUid()).setValue(userInformation);
-        databaseReference.child("users").child(user.getUid()).setValue(userInformation);
-
-        Toast.makeText(this, "Informacje zapisane!", Toast.LENGTH_LONG).show();
-    }
-
-
-    private void showUpdateDialog(String Name)
-    {
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-
-        LayoutInflater inflater = getLayoutInflater();
-
-        final View dialogView = inflater.inflate(R.layout.activity_update_dialog, null);
-
-        dialogBuilder.setView(dialogView);
-
-        final EditText editTextName = (EditText) dialogView.findViewById(R.id.editTextName);
-
-        final Button buttonUpdate = (Button) dialogView.findViewById(R.id.buttonUpdate);
-
-        AlertDialog alertDialog = dialogBuilder.create();
-
-        alertDialog.show();
-
-
-
+            }
+        });
 
 
     }
 
+    private void showData(DataSnapshot dataSnapshot) {
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            UserInformationReview uInfo = new UserInformationReview();
+            uInfo.setName(ds.child(userID).getValue(UserInformationReview.class).getName()); //set the name
+            uInfo.setSurname(ds.child(userID).getValue(UserInformationReview.class).getSurname()); //set the surname
+            uInfo.setPesel(ds.child(userID).getValue(UserInformationReview.class).getPesel()); //set the phone_num
+            uInfo.setCity(ds.child(userID).getValue(UserInformationReview.class).getCity());
+            uInfo.setAddress(ds.child(userID).getValue(UserInformationReview.class).getAddress());
+            uInfo.setZip(ds.child(userID).getValue(UserInformationReview.class).getZip());
+            uInfo.setPhone(ds.child(userID).getValue(UserInformationReview.class).getPhone());
 
+
+            //display all the information
+            Log.d(TAG, "showData: name: " + uInfo.getName());
+            Log.d(TAG, "showData: email: " + uInfo.getSurname());
+            Log.d(TAG, "showData: phone_num: " + uInfo.getPesel());
+            Log.d(TAG, "showData: City: " + uInfo.getCity());
+            Log.d(TAG, "showData: Address: " + uInfo.getAddress());
+            Log.d(TAG, "showData: Zip: " + uInfo.getZip());
+            Log.d(TAG, "showData: Phone: " + uInfo.getPhone());
+
+            ArrayList<String> array = new ArrayList<>();
+            array.add(uInfo.getName());
+            array.add(uInfo.getSurname());
+            array.add(uInfo.getPesel());
+            array.add(uInfo.getCity());
+            array.add(uInfo.getAddress());
+            array.add(uInfo.getZip());
+            array.add(uInfo.getPhone());
+            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
+            mListView.setAdapter(adapter);
+        }
+    }
+
+
+/*
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    */
 
     @Override
     public void onClick(View view) {
-        //if save is pressed
-
-        if(view == buttonSa){
-            saveUserInformation();
+        //if logout is pressed
+        if(view == buttonLogout){
+            //logging out the user
+            firebaseAuth.signOut();
             //closing activity
             finish();
             //starting login activity
-            startActivity(new Intent(this, MainPage.class));
+            startActivity(new Intent(this, LoginActivity.class));
         }
-
-
-
-
     }
-
-
 }

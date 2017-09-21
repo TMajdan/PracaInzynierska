@@ -17,9 +17,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-import static com.example.tomaszmajdan.pracainzynierska.R.id.buttonForgotPsw;
-import static com.example.tomaszmajdan.pracainzynierska.R.id.start;
-
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     //defining views
@@ -50,7 +47,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //close this activity
             finish();
             //opening profile activity
-            startActivity(new Intent(getApplicationContext(), MainPage.class));
+            startActivity(new Intent(getApplicationContext(), UserEdit.class));
         }
 
         //initializing views
@@ -104,7 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         if(task.isSuccessful()){
                             //start the profile activity
                             finish();
-                            startActivity(new Intent(getApplicationContext(), MainPage.class));
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
 
 
                         } else{

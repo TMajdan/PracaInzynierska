@@ -47,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             finish();
 
             //and open profile activity
-            startActivity(new Intent(getApplicationContext(), MainPage.class));
+            startActivity(new Intent(getApplicationContext(), UserEdit.class));
         }
 
         //initializing views

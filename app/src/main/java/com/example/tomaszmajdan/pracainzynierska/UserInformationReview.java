@@ -37,8 +37,28 @@ public class UserInformationReview {
         return pesel;
     }
 
-    public void setPesel(String pesel) {
-        this.pesel= pesel;
+    public void setPesel(String pesel) {this.pesel= pesel;}
+
+    public String getAddress() {
+        return address;
     }
+
+    public void setAddress(String address) {this.address= address;}
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {this.city= city;}
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {this.phone= phone;}
+
+    public String getZip() {return zip;}
+
+    public void setZip(String zip) {this.zip= zip;}
 
 }
