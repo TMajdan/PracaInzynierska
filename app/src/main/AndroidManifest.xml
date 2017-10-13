@@ -23,7 +23,8 @@
         <activity android:name=".UserInfo" />
         <activity android:name=".UserEdit1" />
         <activity android:name=".ForgotPasswordActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".PushActivity"></activity>
     </application>
 
 </manifest>
