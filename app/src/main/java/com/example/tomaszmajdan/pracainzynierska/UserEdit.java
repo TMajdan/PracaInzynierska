@@ -1,16 +1,13 @@
 package com.example.tomaszmajdan.pracainzynierska;
-
-import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -20,156 +17,239 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.add;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.address;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.city;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.name;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.pesel;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.phone;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.surname;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.zip;
 
-public class UserEdit extends AppCompatActivity implements View.OnClickListener {
+public class UserEdit extends AppCompatActivity {
 
-
-
-    //firebase auth object
+    private static final String TAG = UserEdit.class.getSimpleName();
+    private TextView txtDetails;
+    private EditText inputName, inputSurname,inputPesel, inputPhone, inputCity, inputAddress, inputZip;
+    private Button btnSave, btnBack;
+    private DatabaseReference mFirebaseDatabase;
+    private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth firebaseAuth;
-    private FirebaseDatabase mFirebaseDatabase;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-    private DatabaseReference myRef;
-    private String userID;
-    private static final String TAG = "ViewDatabase";
-    private ListView mListView;
-
-    //view objects
-    private TextView textViewUserEmail;
-    private Button buttonLogout;
-
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_database_layout);
+        setContentView(R.layout.activity_edytuj_account);
 
-        mListView = (ListView) findViewById(R.id.listview);
-        mFirebaseDatabase = FirebaseDatabase.getInstance();
-        myRef = mFirebaseDatabase.getReference();
+        // Displaying toolbar icon
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
 
-        //initializing firebase authentication object
-        firebaseAuth = FirebaseAuth.getInstance();
+        txtDetails = (TextView) findViewById(R.id.txt_user);
+        inputName = (EditText) findViewById(name);
+        inputSurname = (EditText) findViewById(surname);
+        inputCity = (EditText) findViewById(city);
+        inputAddress = (EditText) findViewById(address);
+        inputPesel = (EditText) findViewById(pesel);
+        inputPhone = (EditText) findViewById(phone);
+        inputZip = (EditText) findViewById(zip);
 
-        //if the user is not logged in
-        //that means current user will return null
-        if(firebaseAuth.getCurrentUser() == null){
-            //closing this activity
-            finish();
-            //starting login activity
-            startActivity(new Intent(this, LoginActivity.class));
-        }
 
-        //getting current user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        userID = user.getUid();
+        btnSave = (Button) findViewById(R.id.btn_save);
+        btnBack = (Button) findViewById(R.id.btn_back);
 
-        //initializing views
-        textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
-        buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        mFirebaseInstance = FirebaseDatabase.getInstance();
 
-        //displaying logged in user name
-       // textViewUserEmail.setText("Welcome "+user.getEmail());
+        // get reference to 'users' node
+        mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
-        //adding listener to button
-       // buttonLogout.setOnClickListener(this);
+        // store app title to 'app_title' node
+        mFirebaseInstance.getReference("app_title").setValue("Realtime Database");
 
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                    //toastMessage("Successfully signed in with: " + user.getEmail());
-                } else {
-                    // User is signed out
-                    Log.d(TAG, "onAuthStateChanged:signed_out");
-                    // toastMessage("Successfully signed out.");
-                }
-                // ...
-            }
-        };
 
-        myRef.addValueEventListener(new ValueEventListener() {
+
+
+        // app_title change listener
+        mFirebaseInstance.getReference("app_title").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                showData(dataSnapshot);
+                Log.e(TAG, "App title updated");
+
+                String appTitle = dataSnapshot.getValue(String.class);
+
+                // update toolbar title
+                getSupportActionBar().setTitle(appTitle);
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read app title value.", error.toException());
             }
         });
 
+        // Save / update the user
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String name = inputName.getText().toString();
+                String surname = inputSurname.getText().toString();
+                String pesel = inputPesel.getText().toString();
+                String phone = inputPhone.getText().toString();
+                String city = inputCity.getText().toString();
+                String address = inputAddress.getText().toString();
+                String zip = inputZip.getText().toString();
 
+                // Check for already existed userId
+           //    if (TextUtils.isEmpty(userId)) {
+            //       createUser(name, surname, pesel, phone, city, address, zip);
+           //     } else {
+                    updateUser(name, surname, pesel, phone, city, address, zip);
+          //      }
+            }
+        });
+
+        toggleButton();
     }
 
-    private void showData(DataSnapshot dataSnapshot) {
-        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-            UserInformationReview uInfo = new UserInformationReview();
-            uInfo.setName(ds.child(userID).getValue(UserInformationReview.class).getName()); //set the name
-            uInfo.setSurname(ds.child(userID).getValue(UserInformationReview.class).getSurname()); //set the surname
-            uInfo.setPesel(ds.child(userID).getValue(UserInformationReview.class).getPesel()); //set the phone_num
-            uInfo.setCity(ds.child(userID).getValue(UserInformationReview.class).getCity());
-            uInfo.setAddress(ds.child(userID).getValue(UserInformationReview.class).getAddress());
-            uInfo.setZip(ds.child(userID).getValue(UserInformationReview.class).getZip());
-            uInfo.setPhone(ds.child(userID).getValue(UserInformationReview.class).getPhone());
-
-
-            //display all the information
-            Log.d(TAG, "showData: name: " + uInfo.getName());
-            Log.d(TAG, "showData: email: " + uInfo.getSurname());
-            Log.d(TAG, "showData: phone_num: " + uInfo.getPesel());
-            Log.d(TAG, "showData: City: " + uInfo.getCity());
-            Log.d(TAG, "showData: Address: " + uInfo.getAddress());
-            Log.d(TAG, "showData: Zip: " + uInfo.getZip());
-            Log.d(TAG, "showData: Phone: " + uInfo.getPhone());
-
-            ArrayList<String> array = new ArrayList<>();
-            array.add(uInfo.getName());
-            array.add(uInfo.getSurname());
-            array.add(uInfo.getPesel());
-            array.add(uInfo.getCity());
-            array.add(uInfo.getAddress());
-            array.add(uInfo.getZip());
-            array.add(uInfo.getPhone());
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, array);
-            mListView.setAdapter(adapter);
+    // Changing button text
+    private void toggleButton() {
+        if (TextUtils.isEmpty(userId)) {
+            btnSave.setText("Save");
+        } else {
+            btnSave.setText("Update");
         }
     }
 
+    /**
+     * Creating new user node under 'users'
+     */
+    private void createUser (String name, String surname, String pesel, String phone, String address, String city, String zip) {
+        // TODO
+        // In real apps this userId should be fetched
+        // by implementing firebase auth
 
-/*
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
-    }
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser users = firebaseAuth.getCurrentUser();
+        userId = users.getUid();
+        User test = new User(name,surname,pesel,phone,address,city,zip);
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        if (mAuthListener != null) {
-            mAuth.removeAuthStateListener(mAuthListener);
+
+        if (TextUtils.isEmpty(userId)) {
+            userId = mFirebaseDatabase.push().getKey();
         }
-    }
-    */
 
-    @Override
-    public void onClick(View view) {
-        //if logout is pressed
-        if(view == buttonLogout){
-            //logging out the user
-            firebaseAuth.signOut();
-            //closing activity
-            finish();
-            //starting login activity
-            startActivity(new Intent(this, LoginActivity.class));
+
+
+        mFirebaseDatabase.child(userId).setValue(test);
+
+        addUserChangeListener();
+    }
+
+    /**
+     * User data change listener
+     */
+    private void addUserChangeListener() {
+        // User data change listener
+        mFirebaseDatabase.child(userId).addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User users = dataSnapshot.getValue(User.class);
+
+                // Check for null
+                if (users == null) {
+                    Log.e(TAG, "User data is null!");
+                    return;
+                }
+
+              //  Log.e(TAG, "User data is changed!" + users.name + ", " + users.surname);
+
+                // Display newly updated name and email
+                txtDetails.setText(users.name + ", " + users.surname + ", " + users.pesel + ", " + ", " + users.phone
+                        + ", " + users.city + ", " + users.address + ", " + users.zip
+                );
+
+                // clear edit text
+                inputSurname.setText("");
+                inputName.setText("");
+                inputZip.setText("");
+                inputPhone.setText("");
+                inputPesel.setText("");
+                inputAddress.setText("");
+                inputCity.setText("");
+
+
+
+                toggleButton();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read user", error.toException());
+            }
+        });
+    }
+
+    private void updateUser(String name, String surname, String pesel, String phone, String address, String city, String zip) {
+        // updating the user via child nodes
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser users = firebaseAuth.getCurrentUser();
+        userId = users.getUid();
+       // User test = new User(name,surname,pesel,phone,address,city,zip);
+
+
+        if (TextUtils.isEmpty(userId)) {
+            userId = mFirebaseDatabase.push().getKey();
+        }
+
+
+
+        //mFirebaseDatabase.child(userId).setValue(test);
+        addUserChangeListener();
+
+        if(name.matches("") ) {
+        }
+              else{
+            mFirebaseDatabase.child(userId).child("name").setValue(name);
+        }
+
+        if(surname.matches("")) {
+        }
+        else {
+            mFirebaseDatabase.child(userId).child("surname").setValue(surname);
+        }
+
+        if (pesel.length() == 0) {}
+        else{
+            mFirebaseDatabase.child(userId).child("pesel").setValue(pesel);
+        }
+
+        if(phone.length() == 0) {
+        }
+        else {
+            mFirebaseDatabase.child(userId).child("phone").setValue(phone);
+        }
+
+        if(address.length() == 0) {
+        }
+        else {
+            mFirebaseDatabase.child(userId).child("address").setValue(address);
+        }
+      //  if (!TextUtils.isEmpty(city))
+        if(city.length() == 0) {
+        }
+        else {
+            mFirebaseDatabase.child(userId).child("city").setValue(city);
+        }
+      //  if (!TextUtils.isEmpty(zip))
+        if(zip.length() == 0) {
+        }
+        else {
+            mFirebaseDatabase.child(userId).child("zip").setValue(zip);
         }
     }
 }

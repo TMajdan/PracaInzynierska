@@ -6,17 +6,19 @@ package com.example.tomaszmajdan.pracainzynierska;
 
 public class UserInformationReview {
 
-    private String name;
-    private String surname;
+    protected String name;
+    protected String surname;
     private String pesel;
     private String address;
     private String city;
     private String phone;
     private String zip;
 
-    public UserInformationReview(){
-
+    public UserInformationReview(String name, String surname ){
+        this.name=name;
+        this.surname=surname;
     }
+
     public String getName() {
         return name;
     }

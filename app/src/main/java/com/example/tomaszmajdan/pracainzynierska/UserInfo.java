@@ -95,7 +95,7 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
             //closing activity
             finish();
             //starting login activity
-            startActivity(new Intent(this, UserEdit.class));
+            startActivity(new Intent(this, MainActivity.class));
         }
 
     }
