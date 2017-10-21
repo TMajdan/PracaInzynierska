@@ -50,8 +50,8 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
         editTextSurname = (EditText) findViewById(R.id.editTextSurname);
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
         editTextAddress = (EditText) findViewById(R.id.editTextAddress);
-        editTextZip = (EditText) findViewById(R.id.editTextZip);
-        editTextPesel = (EditText) findViewById(R.id.editTextPesel);
+      //  editTextZip = (EditText) findViewById(R.id.editTextZip);
+      //  editTextPesel = (EditText) findViewById(R.id.editTextPesel);
         editTextCity= (EditText) findViewById(R.id.editTextCity) ;
 
         //getting current user
@@ -77,7 +77,7 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
         String phone = editTextPhone.getText().toString().trim();
         String zip = editTextZip.getText().toString().trim();
 
-        UserInformation userInformation = new UserInformation(name, surname, pesel, phone, city, address, zip);
+        UserInformation userInformation = new UserInformation(name, surname, phone, city, address);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 

@@ -15,7 +15,7 @@ public class UserInformation {
     public String zip;
 
 
-    public UserInformation(String name, String surname, String pesel, String phone, String city, String address, String zip)
+    public UserInformation(String name, String surname, String phone, String city, String address)
     {
         this.name = name;
         this.surname = surname;

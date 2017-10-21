@@ -54,8 +54,8 @@ public class UserEdit1 extends AppCompatActivity  implements View.OnClickListene
         editTextSurname = (EditText) findViewById(R.id.editTextSurname);
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
         editTextAddress = (EditText) findViewById(R.id.editTextAddress);
-        editTextZip = (EditText) findViewById(R.id.editTextZip);
-        editTextPesel = (EditText) findViewById(R.id.editTextPesel);
+     //   editTextZip = (EditText) findViewById(R.id.editTextZip);
+     //   editTextPesel = (EditText) findViewById(R.id.editTextPesel);
         editTextCity= (EditText) findViewById(R.id.editTextCity) ;
 
         //getting current user
@@ -75,13 +75,13 @@ public class UserEdit1 extends AppCompatActivity  implements View.OnClickListene
     {
         String name  = editTextName.getText().toString().trim();
         String surname = editTextSurname.getText().toString().trim();
-        String pesel = editTextPesel.getText().toString().trim();
+      //  String pesel = editTextPesel.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
         String city = editTextCity.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
-        String zip = editTextZip.getText().toString().trim();
+       // String zip = editTextZip.getText().toString().trim();
 
-        UserInformation userInformation = new UserInformation(name, surname, pesel, phone, city, address, zip);
+        UserInformation userInformation = new UserInformation(name, surname, phone, city, address);
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 

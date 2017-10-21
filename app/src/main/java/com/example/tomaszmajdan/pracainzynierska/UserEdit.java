@@ -1,4 +1,5 @@
 package com.example.tomaszmajdan.pracainzynierska;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -21,10 +22,10 @@ import static com.example.tomaszmajdan.pracainzynierska.R.id.add;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.address;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.city;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.name;
-import static com.example.tomaszmajdan.pracainzynierska.R.id.pesel;
+//import static com.example.tomaszmajdan.pracainzynierska.R.id.pesel;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.phone;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.surname;
-import static com.example.tomaszmajdan.pracainzynierska.R.id.zip;
+//import static com.example.tomaszmajdan.pracainzynierska.R.id.zip;
 
 public class UserEdit extends AppCompatActivity {
 
@@ -51,9 +52,9 @@ public class UserEdit extends AppCompatActivity {
         inputSurname = (EditText) findViewById(surname);
         inputCity = (EditText) findViewById(city);
         inputAddress = (EditText) findViewById(address);
-        inputPesel = (EditText) findViewById(pesel);
+       // inputPesel = (EditText) findViewById(pesel);
         inputPhone = (EditText) findViewById(phone);
-        inputZip = (EditText) findViewById(zip);
+       // inputZip = (EditText) findViewById(zip);
 
 
         btnSave = (Button) findViewById(R.id.btn_save);
@@ -95,32 +96,43 @@ public class UserEdit extends AppCompatActivity {
             public void onClick(View view) {
                 String name = inputName.getText().toString();
                 String surname = inputSurname.getText().toString();
-                String pesel = inputPesel.getText().toString();
+               // String pesel = inputPesel.getText().toString();
                 String phone = inputPhone.getText().toString();
                 String city = inputCity.getText().toString();
                 String address = inputAddress.getText().toString();
-                String zip = inputZip.getText().toString();
+               // String zip = inputZip.getText().toString();
 
                 // Check for already existed userId
            //    if (TextUtils.isEmpty(userId)) {
             //       createUser(name, surname, pesel, phone, city, address, zip);
            //     } else {
-                    updateUser(name, surname, pesel, phone, city, address, zip);
+                    updateUser(name, surname, phone, city, address);
           //      }
             }
         });
 
-        toggleButton();
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Add your code in here!
+                finish();
+                //starting login activity
+                startActivity(new Intent(v.getContext(), MainActivity.class));
+            }
+        });
+
+       // toggleButton();
     }
 
     // Changing button text
-    private void toggleButton() {
-        if (TextUtils.isEmpty(userId)) {
-            btnSave.setText("Save");
-        } else {
-            btnSave.setText("Update");
-        }
-    }
+    //  private void toggleButton() {
+    //     if (TextUtils.isEmpty(userId)) {
+    //         btnSave.setText("Save");
+    //     } else {
+    //         btnSave.setText("Update");
+    //     }
+    //  }
 
     /**
      * Creating new user node under 'users'
@@ -167,22 +179,22 @@ public class UserEdit extends AppCompatActivity {
               //  Log.e(TAG, "User data is changed!" + users.name + ", " + users.surname);
 
                 // Display newly updated name and email
-                txtDetails.setText(users.name + ", " + users.surname + ", " + users.pesel + ", " + ", " + users.phone
-                        + ", " + users.city + ", " + users.address + ", " + users.zip
+                txtDetails.setText(users.name + ", " + users.surname + ", " + users.phone
+                        + ", " + users.city + ", " + users.address + ", "
                 );
 
                 // clear edit text
                 inputSurname.setText("");
                 inputName.setText("");
-                inputZip.setText("");
+               // inputZip.setText("");
                 inputPhone.setText("");
-                inputPesel.setText("");
+               // inputPesel.setText("");
                 inputAddress.setText("");
                 inputCity.setText("");
 
 
 
-                toggleButton();
+             //   toggleButton();
             }
 
             @Override
@@ -193,7 +205,7 @@ public class UserEdit extends AppCompatActivity {
         });
     }
 
-    private void updateUser(String name, String surname, String pesel, String phone, String address, String city, String zip) {
+    private void updateUser(String name, String surname, String phone, String address, String city) {
         // updating the user via child nodes
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -205,7 +217,6 @@ public class UserEdit extends AppCompatActivity {
         if (TextUtils.isEmpty(userId)) {
             userId = mFirebaseDatabase.push().getKey();
         }
-
 
 
         //mFirebaseDatabase.child(userId).setValue(test);
@@ -223,10 +234,6 @@ public class UserEdit extends AppCompatActivity {
             mFirebaseDatabase.child(userId).child("surname").setValue(surname);
         }
 
-        if (pesel.length() == 0) {}
-        else{
-            mFirebaseDatabase.child(userId).child("pesel").setValue(pesel);
-        }
 
         if(phone.length() == 0) {
         }
@@ -245,11 +252,6 @@ public class UserEdit extends AppCompatActivity {
         else {
             mFirebaseDatabase.child(userId).child("city").setValue(city);
         }
-      //  if (!TextUtils.isEmpty(zip))
-        if(zip.length() == 0) {
-        }
-        else {
-            mFirebaseDatabase.child(userId).child("zip").setValue(zip);
-        }
+
     }
 }

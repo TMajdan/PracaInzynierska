@@ -51,13 +51,6 @@
                 android:hint="Wprowadź Nazwisko"
                 android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/pesel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:hint="Wprowadź numer pesel"
-                android:inputType="text|phone" />
 
             <EditText
                 android:id="@+id/phone"
@@ -83,13 +76,6 @@
                 android:hint="Wprowadź ulicę i numer domu"
                 android:inputType="textPersonName" />
 
-            <EditText
-                android:id="@+id/zip"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:hint="Wprowadź zip"
-                android:inputType="text|phone" />
 
         <Button
             android:id="@+id/btn_save"

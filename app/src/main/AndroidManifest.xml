@@ -24,7 +24,13 @@
         <activity android:name=".UserEdit1" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".PushActivity"></activity>
+        <activity android:name=".PushActivity" />
+        <activity
+            android:name=".AnimalsActivity"
+            android:label="@string/title_activity_animals"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddAnimalActivity" />
+        <activity android:name=".Animals.AnimalActivity"></activity>
     </application>
 
 </manifest>
