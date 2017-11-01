@@ -58,6 +58,8 @@ public class AnimalActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
             }
 
+
+
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {
 

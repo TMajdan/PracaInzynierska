@@ -48,7 +48,7 @@
                             android:background="@drawable/icon"
                             android:clickable="true"
 
-                            android:text="Storage"
+                            android:text="Wizyta"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
