@@ -50,6 +50,8 @@ public class AnimalActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 
+
+
         db.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {

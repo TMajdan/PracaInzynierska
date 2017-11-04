@@ -8,12 +8,14 @@ import android.widget.TextView;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
 import com.example.tomaszmajdan.pracainzynierska.Cure.Cure_Activity;
+import com.example.tomaszmajdan.pracainzynierska.Doctors.Doctors;
+import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private TextView okienko1,okienko2,okienko5,okienko6;
+    private TextView okienko1,okienko2,okienko3,okienko5,okienko6;
     private String userID;
     private FirebaseAuth firebaseAuth;
 
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
         okienko1 = (TextView) findViewById(R.id.okienko1);
         okienko2 = (TextView) findViewById(R.id.okienko2);
+        okienko3 = (TextView) findViewById(R.id.okienko3);
         okienko5 = (TextView) findViewById(R.id.okienko5);
         okienko6 = (TextView) findViewById(R.id.okienko6);
 
@@ -40,6 +43,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(v.getContext(), AnimalActivity.class));
+            }
+        });
+
+        (findViewById(R.id.okienko3)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(v.getContext(), DoctorsActivity.class));
             }
         });
 

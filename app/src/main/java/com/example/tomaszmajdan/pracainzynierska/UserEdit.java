@@ -66,7 +66,7 @@ public class UserEdit extends AppCompatActivity {
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
 
         // store app title to 'app_title' node
-        mFirebaseInstance.getReference("app_title").setValue("Realtime Database");
+        //mFirebaseInstance.getReference("app_title").setValue("Realtime Database");
 
 
 

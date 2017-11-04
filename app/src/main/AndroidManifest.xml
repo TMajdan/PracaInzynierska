@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.tomaszmajdan.pracainzynierska">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.intent.action.CALL_PRIVILEGED" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
+        android:label="Praca inżynierska"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:label="Praca inżynierska"
-        android:theme="@style/AppTheme">
-
-        <activity android:name=".LoginActivity">
-
-        </activity>
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon,android:label">
+        <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".UserEdit" />
         <activity android:name=".UserInfo" />
-        <activity android:name=".UserEdit1" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".PushActivity" />
@@ -26,7 +26,6 @@
             android:name=".AnimalsActivity"
             android:label="@string/title_activity_animals"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".AddAnimalActivity" />
         <activity android:name=".Animals.AnimalActivity" />
         <activity android:name=".Cure.Cure_Activity" />
@@ -36,9 +35,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
+
+        <activity android:name=".Doctors.DoctorsActivity" />
     </application>
 
 </manifest>
