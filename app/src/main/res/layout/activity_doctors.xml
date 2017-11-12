@@ -103,19 +103,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="@string/Location"
+                    android:textAlignment="center"
                     android:textColor="#000"
                     android:textSize="14dp" />
 
                 <TextView
                     android:id="@+id/nr_room"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:background="#00000000"
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="Room"
                     android:textColor="#000"
-                    android:textSize="14dp" />
+                    android:textSize="24sp" />
             </LinearLayout>
 
             <View
@@ -132,48 +133,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/godziny_id"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Godziny przyjęć"
+                    android:textAlignment="center"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/godz_wizyt"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
                     android:gravity="center"
-                    android:text="Valid"
+                    android:text="Godziny przyjęć"
                     android:textColor="#000"
-                    android:textSize="14dp" />
+                    android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/shopvalid"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#00000000"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="4 pm"
-                    android:textColor="#7000"
-                    android:textColorHint="#000"
-                    android:textSize="14dp" />
-            </LinearLayout>
-
-            <View
-                android:layout_width="0.1dp"
-                android:layout_height="50dp"
-                android:background="#ACACAC" />
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/shopmap"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/ic_location_on"
-
-                    android:backgroundTint="@color/colorPrimaryDark" />
             </LinearLayout>
 
             <View
@@ -202,7 +177,8 @@
                     android:id="@+id/doctor_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="TextView" />
+                    android:text="TextView"
+                    android:textAlignment="textStart" />
 
             </LinearLayout>
         </LinearLayout>

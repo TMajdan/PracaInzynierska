@@ -14,7 +14,7 @@ import com.example.tomaszmajdan.pracainzynierska.R;
 
 public class DoctorsViewHolder extends RecyclerView.ViewHolder {
     View mView;
-    TextView textView_name, textView_desc, textView_room, textView_phone;
+    TextView textView_name, textView_desc, textView_room, textView_phone,textView_godz;
 
     ImageView imageView_phonecall;
     public DoctorsViewHolder(View itemView) {
@@ -24,6 +24,7 @@ public class DoctorsViewHolder extends RecyclerView.ViewHolder {
         textView_desc = (TextView) itemView.findViewById(R.id.doctor_desc);
         textView_phone = (TextView) itemView.findViewById(R.id.doctor_phone);
         textView_room = (TextView) itemView.findViewById(R.id.nr_room);
+        textView_godz = (TextView) itemView.findViewById(R.id.godz_wizyt);
         //imageView_phonecall = (ImageView) itemView.findViewById(R.id.phonecall);
 
       //  imageView=(ImageView)itemView.findViewById(R.id.image);
@@ -44,6 +45,7 @@ public class DoctorsViewHolder extends RecyclerView.ViewHolder {
     {
         textView_room.setText(room);
     }
+    public void setGodz(String godz) { textView_godz.setText(godz);}
 
 
 

@@ -1,12 +1,18 @@
 package com.example.tomaszmajdan.pracainzynierska.Doctors;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -15,6 +21,9 @@ import com.example.tomaszmajdan.pracainzynierska.R;
 
 
 import java.util.ArrayList;
+
+import static android.content.Context.CLIPBOARD_SERVICE;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.parent;
 
 /**
  *
@@ -30,6 +39,8 @@ public class Doctors extends BaseAdapter {
         this.c = context;
         this.upcomings = upcomings;
     }
+
+
 
 
     @Override
@@ -59,7 +70,6 @@ public class Doctors extends BaseAdapter {
 */
 
 
-
     public View getView(int position, View convertView, ViewGroup parent) {
         if(convertView==null)
         {
@@ -73,6 +83,11 @@ public class Doctors extends BaseAdapter {
 
         TextView phoneTxt = (TextView) convertView.findViewById(R.id.doctor_phone);
 
+        TextView godzTxt = (TextView) convertView.findViewById(R.id.godz_wizyt);
+
+
+
+
         // TextView rasaTxt = (TextView) convertView.findViewById(R.id.descTxt4);
 
         //  TextView mascTxt = (TextView) convertView.findViewById(R.id.propellantTxt);
@@ -82,10 +97,23 @@ public class Doctors extends BaseAdapter {
         descTxt.setText(u.getDesc());
         roomTxt.setText(u.getRoom());
         phoneTxt.setText(u.getPhone());
+        godzTxt.setText(u.getGodz());
 
 
         return convertView;
     }
+
+
+
+
+
+   /* private void displayInputDialog() {
+        Dialog d = new Dialog(c);
+        d.setTitle("Godziny");
+        d.setContentView(R.layout.input_data_dialog);
+
+        d.show();
+    } */
 
    /*
     @Override

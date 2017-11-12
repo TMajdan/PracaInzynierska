@@ -8,16 +8,17 @@ import java.io.Serializable;
 
 public class Upcomings implements Serializable{
 
-    String name, desc, room,shopmap,phone;
+    String name, desc, room,shopmap,phone,godz;
 
         //private String title,description,image;
     public Upcomings(){}
 
-    public Upcomings(String name, String desc, String room, String phone) {
+    public Upcomings(String name, String desc, String room, String phone, String godz) {
         this.name = name;
         this.desc = desc;
         this.room = room;
         this.phone = phone;
+        this.godz = godz;
     }
 
 
@@ -60,6 +61,13 @@ public class Upcomings implements Serializable{
         this.shopmap = shopmap;
     }
 
+    public String getGodz() {
+        return godz;
+    }
+
+    public void setGodz(String godz) {
+        this.godz = godz;
+    }
 
 
 

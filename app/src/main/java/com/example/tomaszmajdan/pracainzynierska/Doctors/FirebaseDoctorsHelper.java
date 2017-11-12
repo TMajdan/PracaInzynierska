@@ -60,6 +60,7 @@ public class FirebaseDoctorsHelper extends Fragment {
                 viewHolder.setDoctor_desc(model.getDesc());
                 viewHolder.setNr_room(model.getRoom());
                 viewHolder.setPhone_call(model.getPhone());
+                viewHolder.setGodz(model.getGodz());
 
             }
         };
