@@ -1,15 +1,21 @@
 package com.example.tomaszmajdan.pracainzynierska;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
+import com.example.tomaszmajdan.pracainzynierska.Visit.MyVisitActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -18,20 +24,25 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 import static com.example.tomaszmajdan.pracainzynierska.R.id.add;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.address;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.adres_id;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.city;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.city_id;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.name;
 //import static com.example.tomaszmajdan.pracainzynierska.R.id.pesel;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.phone;
+import static com.example.tomaszmajdan.pracainzynierska.R.id.phone_id;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.surname;
 //import static com.example.tomaszmajdan.pracainzynierska.R.id.zip;
 
-public class UserEdit extends AppCompatActivity {
+public class UserEdit extends Activity {
 
     private static final String TAG = UserEdit.class.getSimpleName();
-    private TextView txtDetails;
-    private EditText inputName, inputSurname,inputPesel, inputPhone, inputCity, inputAddress, inputZip;
+    private TextView txtName, txtSurname, txtCity, txtAdres, txtPhone;
+    private EditText inputName, inputSurname, inputPesel, inputPhone, inputCity, inputAddress, inputZip;
     private Button btnSave, btnBack;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
@@ -41,24 +52,35 @@ public class UserEdit extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edytuj_account);
+        setContentView(R.layout.activity_edit_profile);
 
-        // Displaying toolbar icon
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setIcon(R.mipmap.ic_launcher);
+        (findViewById(R.id.back_arrow)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        txtDetails = (TextView) findViewById(R.id.txt_user);
-        inputName = (EditText) findViewById(name);
-        inputSurname = (EditText) findViewById(surname);
-        inputCity = (EditText) findViewById(city);
-        inputAddress = (EditText) findViewById(address);
-       // inputPesel = (EditText) findViewById(pesel);
-        inputPhone = (EditText) findViewById(phone);
-       // inputZip = (EditText) findViewById(zip);
+                startActivity(new Intent(v.getContext(), MainActivity.class));
+
+            }
+        });
+
+        btnSave = (Button) findViewById(R.id.btn_save);
+        txtName = (TextView) findViewById(R.id.textname_id);
+        txtSurname = (TextView) findViewById(R.id.textsurname_id);
+        txtCity = (TextView) findViewById(R.id.textcity_id);
+        txtAdres = (TextView) findViewById(R.id.textadres_id);
+        txtPhone = (TextView) findViewById(R.id.textphone_id);
+
+
+
+
+        inputCity = (EditText) findViewById(city_id);
+        inputAddress = (EditText) findViewById(adres_id);
+        inputPhone = (EditText) findViewById(phone_id);
 
 
         btnSave = (Button) findViewById(R.id.btn_save);
-        btnBack = (Button) findViewById(R.id.btn_back);
+
+        //FirebaseUser user = firebaseAuth.getCurrentUser();
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
 
@@ -80,7 +102,7 @@ public class UserEdit extends AppCompatActivity {
                 String appTitle = dataSnapshot.getValue(String.class);
 
                 // update toolbar title
-                getSupportActionBar().setTitle(appTitle);
+
             }
 
             @Override
@@ -94,35 +116,35 @@ public class UserEdit extends AppCompatActivity {
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = inputName.getText().toString();
-                String surname = inputSurname.getText().toString();
-               // String pesel = inputPesel.getText().toString();
+               // String name = inputName.getText().toString();
+               // String surname = inputSurname.getText().toString();
+                // String pesel = inputPesel.getText().toString();
                 String phone = inputPhone.getText().toString();
                 String city = inputCity.getText().toString();
                 String address = inputAddress.getText().toString();
-               // String zip = inputZip.getText().toString();
+                // String zip = inputZip.getText().toString();
 
                 // Check for already existed userId
-           //    if (TextUtils.isEmpty(userId)) {
-            //       createUser(name, surname, pesel, phone, city, address, zip);
-           //     } else {
-                    updateUser(name, surname, phone, city, address);
-          //      }
+                //    if (TextUtils.isEmpty(userId)) {
+                //       createUser(name, surname, pesel, phone, city, address, zip);
+                //     } else {
+                updateUser(phone, city, address);
+                //      }
             }
         });
 
 
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Add your code in here!
-                finish();
-                //starting login activity
-                startActivity(new Intent(v.getContext(), MainActivity.class));
-            }
-        });
+      //  btnBack.setOnClickListener(new View.OnClickListener() {
+     //       @Override
+      //      public void onClick(View v) {
+      //          // Add your code in here!
+     //           finish();
+     //           //starting login activity
+      //          startActivity(new Intent(v.getContext(), MainActivity.class));
+      //      }
+     //   });
 
-       // toggleButton();
+        // toggleButton();
     }
 
     // Changing button text
@@ -137,6 +159,9 @@ public class UserEdit extends AppCompatActivity {
     /**
      * Creating new user node under 'users'
      */
+
+
+
     private void createUser (String name, String surname, String pesel, String phone, String address, String city, String zip) {
         // TODO
         // In real apps this userId should be fetched
@@ -176,25 +201,31 @@ public class UserEdit extends AppCompatActivity {
                     return;
                 }
 
-              //  Log.e(TAG, "User data is changed!" + users.name + ", " + users.surname);
+                //  Log.e(TAG, "User data is changed!" + users.name + ", " + users.surname);
 
                 // Display newly updated name and email
-                txtDetails.setText(users.name + ", " + users.surname + ", " + users.phone
-                        + ", " + users.city + ", " + users.address + ", "
-                );
+            //   txtDetails.setText(users.name + ", " + users.surname + ", " + users.phone
+            //            + ", " + users.city + ", " + users.address + ", "
+                txtName.setText(users.name);
+                txtSurname.setText(users.surname);
+                txtAdres.setText(users.address);
+                txtCity.setText(users.city);
+                txtPhone.setText(users.phone);
+
+            //    );
 
                 // clear edit text
-                inputSurname.setText("");
-                inputName.setText("");
-               // inputZip.setText("");
+//                inputSurname.setText("");
+    //            inputName.setText("");
+                // inputZip.setText("");
                 inputPhone.setText("");
-               // inputPesel.setText("");
+                // inputPesel.setText("");
                 inputAddress.setText("");
                 inputCity.setText("");
 
 
 
-             //   toggleButton();
+                //   toggleButton();
             }
 
             @Override
@@ -205,13 +236,13 @@ public class UserEdit extends AppCompatActivity {
         });
     }
 
-    private void updateUser(String name, String surname, String phone, String address, String city) {
+    private void updateUser(String phone, String address, String city) {
         // updating the user via child nodes
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser users = firebaseAuth.getCurrentUser();
         userId = users.getUid();
-       // User test = new User(name,surname,pesel,phone,address,city,zip);
+        // User test = new User(name,surname,pesel,phone,address,city,zip);
 
 
         if (TextUtils.isEmpty(userId)) {
@@ -221,18 +252,6 @@ public class UserEdit extends AppCompatActivity {
 
         //mFirebaseDatabase.child(userId).setValue(test);
         addUserChangeListener();
-
-        if(name.matches("") ) {
-        }
-              else{
-            mFirebaseDatabase.child(userId).child("name").setValue(name);
-        }
-
-        if(surname.matches("")) {
-        }
-        else {
-            mFirebaseDatabase.child(userId).child("surname").setValue(surname);
-        }
 
 
         if(phone.length() == 0) {
@@ -246,7 +265,7 @@ public class UserEdit extends AppCompatActivity {
         else {
             mFirebaseDatabase.child(userId).child("address").setValue(address);
         }
-      //  if (!TextUtils.isEmpty(city))
+        //  if (!TextUtils.isEmpty(city))
         if(city.length() == 0) {
         }
         else {

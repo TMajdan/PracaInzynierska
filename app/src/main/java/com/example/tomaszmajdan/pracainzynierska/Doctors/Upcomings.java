@@ -3,7 +3,7 @@ package com.example.tomaszmajdan.pracainzynierska.Doctors;
 import java.io.Serializable;
 
 /**
- * Created by sumit on 12/17/2016.
+ * Created by tmajdan on 12/10/2017.
  */
 
 public class Upcomings implements Serializable{

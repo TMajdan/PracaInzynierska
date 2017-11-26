@@ -17,15 +17,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="8dp"
-            android:text="Welcome"
+            android:text="Wizyty"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle"
-            android:textColor="@color/colorAccent" />
+            android:textColor="@color/colorPrimaryDark" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Please select the mode to use"
+            android:text="Wybierz czy chcesz umówić się na wizytę lub sprawdzić status zgłoszonych wizyt"
+            android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.DeviceDefault.Small" />
     </LinearLayout>
 
@@ -66,11 +67,11 @@
             app:cardCornerRadius="10dp">
 
             <TextView
-                android:id="@+id/Id_Powrot"
+                android:id="@+id/Id_MojeWizyty"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Powrót"
+                android:text="Moje wizyty"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large.Inverse" />
         </android.support.v7.widget.CardView>
     </LinearLayout>
@@ -86,7 +87,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="You can also change this by pressing " />
+            android:text="Możesz również anulować wybór klikając na tło "
+            android:textAlignment="center" />
 
 
         <LinearLayout
@@ -102,8 +104,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" on the top right corner" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

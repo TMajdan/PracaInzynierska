@@ -71,11 +71,11 @@ public class UserInfo extends AppCompatActivity implements View.OnClickListener 
     {
         String name  = editTextName.getText().toString().trim();
         String surname = editTextSurname.getText().toString().trim();
-        String pesel = editTextPesel.getText().toString().trim();
+//        String pesel = editTextPesel.getText().toString().trim();
         String address = editTextAddress.getText().toString().trim();
         String city = editTextCity.getText().toString().trim();
         String phone = editTextPhone.getText().toString().trim();
-        String zip = editTextZip.getText().toString().trim();
+      //  String zip = editTextZip.getText().toString().trim();
 
         UserInformation userInformation = new UserInformation(name, surname, phone, city, address);
 

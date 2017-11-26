@@ -3,7 +3,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="300dp"
+    android:layout_height="310dp"
 
     android:layout_margin="10dp"
     android:orientation="horizontal"
@@ -17,7 +17,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView3"
@@ -35,13 +35,14 @@
                 android:padding="10dp"
 
                 android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp"
                 android:textStyle="bold" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView5"
@@ -59,12 +60,13 @@
                 android:lines="1"
                 android:padding="10dp"
 
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView6"
@@ -82,12 +84,13 @@
                 android:lines="1"
                 android:padding="10dp"
 
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView7"
@@ -105,12 +108,13 @@
                 android:lines="1"
                 android:padding="10dp"
 
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView9"
@@ -128,12 +132,14 @@
                 android:lines="1"
                 android:padding="10dp"
 
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:text="TEXT"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="18sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/textView8"
@@ -149,7 +155,8 @@
                 android:layout_height="wrap_content"
                 android:lines="1"
                 android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textSize="24sp" />
         </TableRow>
 
     </LinearLayout>

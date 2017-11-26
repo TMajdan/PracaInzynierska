@@ -37,6 +37,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Doctors.DoctorsActivity" />
+        <activity android:name=".Visit.MyVisitActivity" />
+        <activity android:name=".myUserEdit.UserEditActivity"></activity>
     </application>
 
 </manifest>

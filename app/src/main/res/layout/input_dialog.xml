@@ -16,7 +16,7 @@
             android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Wprowadź dane zwierzęcia"
+            android:text="Wprowadź dane ewidencyjne zwierzęcia"
             android:textAlignment="center"
             android:textSize="18sp" />
 
@@ -99,8 +99,6 @@
             </android.support.design.widget.TextInputLayout>
 
 
-
-
         <Button
             android:id="@+id/saveBtn"
             android:layout_width="fill_parent"
@@ -108,7 +106,7 @@
             android:layout_marginTop="40dp"
             android:background="@color/colorAccent"
             android:clickable="true"
-            android:text="Save"
+            android:text="Zapisz"
             android:textColor="@android:color/white" />
     </LinearLayout>
 
