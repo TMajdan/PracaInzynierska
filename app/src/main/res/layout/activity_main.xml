@@ -85,7 +85,7 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="16dp"
                             android:background="@drawable/icon"
-                            android:text="Battery"
+                            android:text="Zwierzęta"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -135,7 +135,7 @@
                             android:background="@drawable/icon"
                             android:clickable="true"
 
-                            android:text="Storage1"
+                            android:text="Lekarze"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
@@ -172,7 +172,6 @@
                             android:layout_centerHorizontal="true"
                             android:layout_marginTop="16dp"
                             android:background="@drawable/icon"
-                            android:text="Battery"
                             android:textSize="18sp"
                             android:textStyle="bold" />
 
