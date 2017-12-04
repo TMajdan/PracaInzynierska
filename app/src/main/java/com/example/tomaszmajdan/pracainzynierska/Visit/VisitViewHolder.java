@@ -1,7 +1,10 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,8 +17,12 @@ import com.example.tomaszmajdan.pracainzynierska.R;
 public class VisitViewHolder extends RecyclerView.ViewHolder {
     View mView;
     TextView textView_name, textView_room,textView_godz, texView_date, texView_opis, texView_animal, texView_status, texView_rodzaj;
-
+    Button ReceptView, zalView;
     ImageView imageView_phonecall;
+
+
+
+
     public VisitViewHolder(View itemView) {
         super(itemView);
         mView=itemView;
@@ -30,6 +37,56 @@ public class VisitViewHolder extends RecyclerView.ViewHolder {
         texView_status = (TextView) itemView.findViewById(R.id.status_id);
         texView_rodzaj = (TextView) itemView.findViewById(R.id.rodzaj_id);
         //  imageView=(ImageView)itemView.findViewById(R.id.image);
+        Button ReceptView = (Button) itemView.findViewById(R.id.recView);
+        Button zalView = (Button) itemView.findViewById(R.id.zalView);
+        //Code Snippet For Alert Dialog With Action
+
+        ReceptView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(mView.getContext());
+                alert.setTitle("Recepta");
+                alert.setMessage("Przykładowa recepta");
+// Create TextView
+                final TextView input = new TextView (mView.getContext());
+                alert.setView(input);
+
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        input.setText("hi");
+                        // Do something with value!
+                    }
+                });
+
+                alert.show();
+            }
+        });
+
+
+        zalView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(mView.getContext());
+                alert.setTitle("Zalecenia lekarskie");
+                alert.setMessage("Przykładowe zalecenie");
+// Create TextView
+                final TextView input = new TextView (mView.getContext());
+                alert.setView(input);
+
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        input.setText("hi");
+                        // Do something with value!
+                    }
+                });
+
+                alert.show();
+            }
+        });
+
+
     }
     public void set_Name(String name)
     {
