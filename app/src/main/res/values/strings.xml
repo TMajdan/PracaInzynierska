@@ -33,4 +33,5 @@
     <string name="skip">POMIŃ</string>
     <string name="start">ROZUMIEM</string>
     <string name="Location">Pokój</string>
+    <string name="title_activity_visit_appointment">VisitAppointment</string>
 </resources>

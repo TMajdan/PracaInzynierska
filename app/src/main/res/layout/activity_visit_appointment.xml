@@ -1,0 +1,457 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.tomaszmajdan.pracainzynierska.Visit.VisitAppointment"
+    tools:showIn="@layout/activity_visit_appointment">
+
+    <!--****ORDER TEXT****-->
+
+    <FrameLayout
+        android:id="@+id/order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:paddingTop="16dp">
+
+        <TextView
+            android:id="@+id/Visit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="16dp"
+            android:text="Umów wizytę"
+            android:textColor="#333333"
+            android:textSize="22dp" />
+
+        <LinearLayout
+            android:layout_width="45dp"
+            android:layout_height="58dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_arrows"
+                android:paddingLeft="16dp"
+                />
+        </LinearLayout>
+
+
+
+
+    </FrameLayout>
+
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/order"
+        android:layout_marginBottom="52.5dp">
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#dad8d8"
+                android:gravity="bottom"/>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:paddingTop="12dp">
+
+
+                <!--****NAME TEXT****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <TextView
+                        android:id="@+id/Doctor_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:text="DOKTOR"
+                        android:textColor="#333333" />
+
+                    <TextView
+                        android:id="@+id/name2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Wybierz lekarza z listy"
+                        android:textColor="#c3c3c3" />
+                </LinearLayout>
+
+
+                <!--****Your name TEXT****-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/doctor_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1" />
+
+                        <View
+                            android:id="@+id/view2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_weight="1"
+                            android:background="#dad8d8" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <!--****CARD TEXT****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            android:id="@+id/Animal_view"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1.9"
+                            android:text="ZWIERZĘ"
+                            android:textColor="#333333" />
+
+                        <TextView
+                            android:id="@+id/card2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Wybierz zwierzę z listy"
+                            android:textColor="#c3c3c3" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+                <!--****CARD NO.****-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <Spinner
+                            android:id="@+id/animal_spinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dad8d8" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            android:id="@+id/Data_View"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5.5"
+                            android:text="DATA"
+                            android:textColor="#333333" />
+
+                        <TextView
+                            android:id="@+id/ccv2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Wybierz datę i godzinę wizyty"
+                            android:textColor="#c3c3c3" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--****CVV NO.****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp"
+                    >
+
+                    <EditText
+                        android:id="@+id/callendar_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Data"
+                        android:inputType="textPersonName" />
+
+                    <EditText
+                        android:id="@+id/hours_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:ems="10"
+                        android:hint="Godzina"
+                        android:inputType="textPersonName" />
+                </LinearLayout>
+
+
+                <!--****DATE****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            android:id="@+id/date1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5.5"
+                            android:text="RODZAJ WIZYTY"
+                            android:textColor="#333333" />
+
+                        <TextView
+                            android:id="@+id/ccv"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5.5"
+                            android:text="Wybierz rodzaj wizyty"
+                            android:textColor="#c3c3c3" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--****CALENDAR****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+
+                        >
+
+                        <Spinner
+                            android:id="@+id/visittype_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dad8d8" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--****ADDRESS 1****-->
+
+
+                <!--****ADDRESS LINE 1 FIELD****-->
+
+
+                <!--****ADDRESS 2****-->
+
+
+                <!--****ADDRESS LINE 2 FIELD****-->
+
+
+                <!--****CITY AND STATE****-->
+
+
+                <!--****CITY AND STATE   TEXT****-->
+
+
+                <!--****ZIPCODE AND COUNTRY****-->
+
+
+                <!--****ZIPCODE AND COUNTRY TEXT****-->
+
+
+                <!--****COMMENT****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="12dp">
+
+                        <TextView
+                            android:id="@+id/opisView"
+                            android:layout_width="133dp"
+                            android:layout_height="wrap_content"
+                            android:text="OPIS"
+                            android:textColor="#333333" />
+
+                        <TextView
+                            android:id="@+id/ccv3"
+                            android:layout_width="196dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5.5"
+                            android:text="Opcjonalnie opisz problem"
+                            android:textColor="#c3c3c3" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <!--****COMMENT FIELD****-->
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="16dp"
+
+                    >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="26dp"
+
+
+                        >
+
+                        <EditText
+                            android:id="@+id/opis_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:ems="10"
+                            android:hint="Opis"
+                            android:inputType="textPersonName" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="#dad8d8" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+
+    <!--****PAY****-->
+    <TextView
+        android:id="@+id/pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="16dp"
+        android:text="Umów wizytę"
+        android:textColor="@color/button_text_color"
+        android:textSize="20dp" />
+
+</RelativeLayout>

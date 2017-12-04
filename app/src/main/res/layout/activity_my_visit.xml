@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvUpcoming"
     android:layout_width="wrap_content"
-    android:layout_height="150dp"
+    android:layout_height="200dp"
     android:layout_margin="1dp"
     card_view:cardCornerRadius="5dp"
     card_view:cardElevation="1dp"
@@ -11,7 +11,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="180dp"
         android:layout_marginTop="10dp">
 
         <TextView
@@ -141,6 +141,27 @@
             android:layout_toEndOf="@+id/animal_id"
             android:text="TextView"
             android:textSize="18dp" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="10dp"
+            android:layout_toStartOf="@+id/button3"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:text="Zalecenia"
+            android:textColor="@color/button_text_color" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:text="Recepta"
+            android:textColor="@color/button_text_color" />
 
 
     </RelativeLayout>

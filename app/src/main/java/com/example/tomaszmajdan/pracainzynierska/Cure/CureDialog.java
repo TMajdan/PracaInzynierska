@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.example.tomaszmajdan.pracainzynierska.Visit.MyVisitActivity;
+import com.example.tomaszmajdan.pracainzynierska.Visit.VisitAppointment;
 
 /**
  * Created by Tomasz Majdan on 12.11.2017.
@@ -58,7 +59,7 @@ public class CureDialog extends AlertDialog {
             public void onClick(View v) {
                 //Activity Main = new  Activity();
                 //Main.startActivity(new Intent(v.getContext(), MainActivity.class));
-                Intent intent = new Intent(mContext, MainActivity.class);
+                Intent intent = new Intent(mContext, VisitAppointment.class);
                 mContext.startActivity(intent);
 
             }
