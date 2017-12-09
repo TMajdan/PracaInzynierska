@@ -90,7 +90,7 @@ public class VisitAppointment extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String nowy = dataSnapshot.child("name").getValue().toString();
-                String id = dataSnapshot.getKey().toString();
+                String id = userId + "/" + dataSnapshot.getKey().toString();
                 animals = addElement(animals, nowy);
                 anime.put(nowy, id);
                 func(dropdown2, animals);
