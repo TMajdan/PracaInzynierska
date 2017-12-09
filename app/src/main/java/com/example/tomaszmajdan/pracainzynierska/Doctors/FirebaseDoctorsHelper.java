@@ -56,11 +56,11 @@ public class FirebaseDoctorsHelper extends Fragment {
         {
             @Override
             protected void populateViewHolder(DoctorsViewHolder viewHolder, Upcomings model, int position) {
-                viewHolder.setDoctor_name(model.getName());
-                viewHolder.setDoctor_desc(model.getDesc());
-                viewHolder.setNr_room(model.getRoom());
-                viewHolder.setPhone_call(model.getPhone());
-                viewHolder.setGodz(model.getGodz());
+                    viewHolder.setDoctor_name(model.getName());
+                    viewHolder.setDoctor_desc(model.getDesc());
+                    viewHolder.setNr_room(model.getRoom());
+                    viewHolder.setPhone_call(model.getPhone());
+                    viewHolder.setGodz(model.getGodz());
 
             }
         };

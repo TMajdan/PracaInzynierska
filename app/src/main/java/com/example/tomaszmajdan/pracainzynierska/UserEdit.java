@@ -63,6 +63,12 @@ public class UserEdit extends Activity {
             }
         });
 
+
+
+
+
+
+
         btnSave = (Button) findViewById(R.id.btn_save);
         txtName = (TextView) findViewById(R.id.textname_id);
         txtSurname = (TextView) findViewById(R.id.textsurname_id);
@@ -80,85 +86,49 @@ public class UserEdit extends Activity {
 
         btnSave = (Button) findViewById(R.id.btn_save);
 
-        //FirebaseUser user = firebaseAuth.getCurrentUser();
 
+       // FirebaseUser user = firebaseAuth.getCurrentUser();
         mFirebaseInstance = FirebaseDatabase.getInstance();
-
-        // get reference to 'users' node
         mFirebaseDatabase = mFirebaseInstance.getReference("users");
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser users = firebaseAuth.getCurrentUser();
+        userId = users.getUid();
 
-        // store app title to 'app_title' node
-        //mFirebaseInstance.getReference("app_title").setValue("Realtime Database");
-
-
-
-
-        // app_title change listener
-        mFirebaseInstance.getReference("app_title").addValueEventListener(new ValueEventListener() {
+        mFirebaseDatabase.child(userId).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.e(TAG, "App title updated");
 
-                String appTitle = dataSnapshot.getValue(String.class);
-
-                // update toolbar title
+                User users = dataSnapshot.getValue(User.class);
+                txtName.setText(users.name);
+                txtSurname.setText(users.surname);
+                txtAdres.setText(users.address);
+                txtCity.setText(users.city);
+                txtPhone.setText(users.phone);
 
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
                 Log.e(TAG, "Failed to read app title value.", error.toException());
             }
         });
 
-        // Save / update the user
+
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               // String name = inputName.getText().toString();
-               // String surname = inputSurname.getText().toString();
-                // String pesel = inputPesel.getText().toString();
+
                 String phone = inputPhone.getText().toString();
                 String city = inputCity.getText().toString();
                 String address = inputAddress.getText().toString();
-                // String zip = inputZip.getText().toString();
 
-                // Check for already existed userId
-                //    if (TextUtils.isEmpty(userId)) {
-                //       createUser(name, surname, pesel, phone, city, address, zip);
-                //     } else {
                 updateUser(phone, city, address);
-                //      }
+
             }
         });
 
 
-      //  btnBack.setOnClickListener(new View.OnClickListener() {
-     //       @Override
-      //      public void onClick(View v) {
-      //          // Add your code in here!
-     //           finish();
-     //           //starting login activity
-      //          startActivity(new Intent(v.getContext(), MainActivity.class));
-      //      }
-     //   });
-
-        // toggleButton();
     }
-
-    // Changing button text
-    //  private void toggleButton() {
-    //     if (TextUtils.isEmpty(userId)) {
-    //         btnSave.setText("Save");
-    //     } else {
-    //         btnSave.setText("Update");
-    //     }
-    //  }
-
-    /**
-     * Creating new user node under 'users'
-     */
 
 
 
@@ -184,9 +154,7 @@ public class UserEdit extends Activity {
         addUserChangeListener();
     }
 
-    /**
-     * User data change listener
-     */
+
     private void addUserChangeListener() {
         // User data change listener
         mFirebaseDatabase.child(userId).addValueEventListener(new ValueEventListener() {
@@ -195,54 +163,39 @@ public class UserEdit extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User users = dataSnapshot.getValue(User.class);
 
-                // Check for null
                 if (users == null) {
                     Log.e(TAG, "User data is null!");
                     return;
                 }
 
-                //  Log.e(TAG, "User data is changed!" + users.name + ", " + users.surname);
 
-                // Display newly updated name and email
-            //   txtDetails.setText(users.name + ", " + users.surname + ", " + users.phone
-            //            + ", " + users.city + ", " + users.address + ", "
                 txtName.setText(users.name);
                 txtSurname.setText(users.surname);
                 txtAdres.setText(users.address);
                 txtCity.setText(users.city);
                 txtPhone.setText(users.phone);
 
-            //    );
-
-                // clear edit text
-//                inputSurname.setText("");
-    //            inputName.setText("");
-                // inputZip.setText("");
                 inputPhone.setText("");
-                // inputPesel.setText("");
                 inputAddress.setText("");
                 inputCity.setText("");
 
-
-
-                //   toggleButton();
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
-                // Failed to read value
+
                 Log.e(TAG, "Failed to read user", error.toException());
             }
         });
     }
 
     private void updateUser(String phone, String address, String city) {
-        // updating the user via child nodes
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser users = firebaseAuth.getCurrentUser();
         userId = users.getUid();
-        // User test = new User(name,surname,pesel,phone,address,city,zip);
+
 
 
         if (TextUtils.isEmpty(userId)) {
@@ -250,7 +203,6 @@ public class UserEdit extends Activity {
         }
 
 
-        //mFirebaseDatabase.child(userId).setValue(test);
         addUserChangeListener();
 
 
