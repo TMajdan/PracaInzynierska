@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:orientation="horizontal"
+    card_view:cardCornerRadius="10dp"
+    card_view:cardElevation="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/rasaTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignRight="@id/nameTxt12"
+            android:layout_alignStart="@+id/rokTxt"
+            android:layout_below="@+id/rokTxt"
+            android:padding="10dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/mascTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignRight="@id/nameTxt12"
+            android:layout_alignStart="@+id/rasaTxt"
+            android:layout_below="@+id/rasaTxt"
+            android:padding="10dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/rokTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignRight="@id/nameTxt12"
+            android:layout_below="@+id/sexTxt"
+            android:layout_toEndOf="@+id/nameTxt12"
+            android:padding="10dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/sexTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/nameTxt12"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/nameTxt12"
+            android:padding="10dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/gatunekTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignRight="@id/nameTxt12"
+            android:layout_below="@+id/nameTxt"
+            android:layout_toEndOf="@+id/nameTxt12"
+            android:padding="10dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nameTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignRight="@id/nameTxt12"
+            android:layout_alignStart="@+id/gatunekTxt"
+            android:padding="10dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nameTxt3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nameTxt12"
+            android:layout_below="@+id/nameTxt12"
+            android:padding="10dp"
+            android:text="Rasa:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorGray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nameTxt14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nameTxt3"
+            android:layout_below="@+id/nameTxt3"
+            android:padding="10dp"
+            android:text="Maść:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorGray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nameTxt12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/nameTxt9"
+            android:layout_below="@+id/nameTxt9"
+            android:padding="10dp"
+            android:text="Rok urodzenia:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorGray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/dogimage"
+            android:padding="10dp"
+            android:text="Nazwa:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorGray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/nameTxt9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/gatunek"
+            android:layout_below="@+id/gatunek"
+            android:padding="10dp"
+            android:text="Płeć:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorGray"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/gatunek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/name"
+            android:layout_toEndOf="@+id/dogimage"
+            android:padding="10dp"
+            android:text="Gatunek:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/colorGray"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/dogimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            card_view:srcCompat="@drawable/ic_animals" />
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>

@@ -14,22 +14,26 @@ import com.example.tomaszmajdan.pracainzynierska.Cure.Cure_Activity;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.Doctors;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends Activity {
 
 
     private TextView okienko1,okienko2,okienko3,okienko5,okienko6;
-    private String userID;
+    public static String userID;
     private FirebaseAuth firebaseAuth;
     private SharedPreferences mPrefs;
     final String PREFS_NAME = "FlashPrefs";
     private Activity mActivity;
     private static final String VAL_FIRST_RUN = "first_run";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser users = firebaseAuth.getCurrentUser();
+        userID = users.getUid();
 
         mPrefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
          // Checks if app run for first time.

@@ -5,68 +5,68 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
-import android.widget.Toast;
+
 import com.example.tomaszmajdan.pracainzynierska.R;
 
 import java.util.ArrayList;
+
 /**
- * Created by Oclemy on 6/21/2016 for ProgrammingWizards Channel and http://www.camposha.com.
- * 1. where WE INFLATE OUR MODEL LAYOUT INTO VIEW ITEM
- * 2. THEN BIND DATA
+ * Created by Admin on 5/26/2017.
  */
-public class CustomAdapter extends BaseAdapter{
+
+public class CustomAdapter extends BaseAdapter {
     Context c;
-    ArrayList<Spacecraft> spacecrafts;
-    public CustomAdapter(Context c, ArrayList<Spacecraft> spacecrafts) {
+    ArrayList<Dog> dogies;
+    LayoutInflater inflater;
+
+
+    public CustomAdapter(Context c, ArrayList<Dog> dogies) {
         this.c = c;
-        this.spacecrafts = spacecrafts;
+        this.dogies = dogies;
     }
+
+
+
+
+
     @Override
     public int getCount() {
-        return spacecrafts.size();
+        return dogies.size();
     }
+
     @Override
-    public Object getItem(int position) {
-        return spacecrafts.get(position);
+    public Object getItem(int i) {
+        return dogies.get(i);
     }
+
     @Override
-    public long getItemId(int position) {
-        return position;
+    public long getItemId(int i) {
+        return i;
     }
+
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        if(convertView==null)
+    public View getView(int i, View convertview, ViewGroup viewGroup) {
+
+        if (inflater== null)
         {
-            convertView= LayoutInflater.from(c).inflate(R.layout.model,parent,false);
+            inflater=(LayoutInflater)c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        } if(convertview==null)
+        {
+            convertview= inflater.inflate(R.layout.listview_layout,viewGroup,false);
+
         }
-        TextView imieTxt= (TextView) convertView.findViewById(R.id.nameTxt);
 
-        TextView sexTxt= (TextView) convertView.findViewById(R.id.descTxt);
+        MyHolder holder= new MyHolder(convertview);
+        holder.nameTxt.setText(dogies.get(i).getName());
+        holder.sexTxt.setText(dogies.get(i).getSex());
+        holder.rokTxt.setText(dogies.get(i).getRok());
+        holder.gatunekTxt.setText(dogies.get(i).getGatunek());
+        holder.mascTxt.setText(dogies.get(i).getMasc());
+        holder.rasaTxt.setText(dogies.get(i).getRasa());
 
-        TextView gatunekTxt= (TextView) convertView.findViewById(R.id.descTxt2);
+        PicassoClient.downloadimg(c,dogies.get(i).getUrl(),holder.img);
 
-        TextView rokTxt = (TextView) convertView.findViewById(R.id.descTxt3);
 
-        TextView rasaTxt = (TextView) convertView.findViewById(R.id.descTxt4);
-
-        TextView mascTxt = (TextView) convertView.findViewById(R.id.propellantTxt);
-
-        final Spacecraft s= (Spacecraft) this.getItem(position);
-        imieTxt.setText(s.getAnimalname());
-        sexTxt.setText(s.getSex());
-        gatunekTxt.setText(s.getGatunek());
-        rokTxt.setText(s.getRok());
-        rasaTxt.setText(s.getRasa());
-        mascTxt.setText(s.getMasc());
-
-        //ONITECLICK
-        convertView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(c,s.getAnimalname(),Toast.LENGTH_SHORT).show();
-            }
-        });
-        return convertView;
+        return convertview;
     }
 }

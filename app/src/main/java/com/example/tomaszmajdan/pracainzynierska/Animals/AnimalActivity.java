@@ -1,16 +1,20 @@
 package com.example.tomaszmajdan.pracainzynierska.Animals;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.app.Dialog;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
+import com.example.tomaszmajdan.pracainzynierska.UserEdit;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -18,148 +22,79 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class AnimalActivity extends AppCompatActivity {
-    DatabaseReference db;
-    FirebaseHelper helper;
-    CustomAdapter adapter;
-    private FirebaseDatabase mFirebaseInstance;
-    ListView lv;
-    private String userId;
-    EditText animalnameTxt, gatunekTxt, rasaTxt,rokTxt,mascTxt,sexTxt;
-    private FirebaseAuth firebaseAuth;
+public class AnimalActivity extends Activity {
+    //String userId;
+    final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/animals/" + MainActivity.userID;
+    EditText nameeditText,urleditText,sexText,rokText,gatunekText,mascText,rasaText;
+    Button btnsave;
+    ListView listView;
+    FirebaseClient firebaseClient;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_animal);
-       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-       //  setSupportActionBar(toolbar);
-        lv = (ListView) findViewById(R.id.lv);
-        firebaseAuth = FirebaseAuth.getInstance();
-       // FirebaseUser animal = firebaseAuth.getCurrentUser();
-       // userId = animal.getUid();
-        mFirebaseInstance = FirebaseDatabase.getInstance();
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+       // setSupportActionBar(toolbar);
 
-        // get reference to 'users' node
-        db = mFirebaseInstance.getReference("animal");
-        //INITIALIZE FIREBASE DB
-        db = FirebaseDatabase.getInstance().getReference();
-        helper = new FirebaseHelper(db);
-        //ADAPTER
-        adapter = new CustomAdapter(this, helper.retrieve());
-        lv.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        listView=(ListView)findViewById(R.id.listview);
+        firebaseClient= new FirebaseClient(this, DB_URL,listView);
+        firebaseClient.refreshdata();
+
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-
-
-
-        db.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                lv.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                lv.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                lv.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-
-                lv.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-
-                lv.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
-        });
-
-
-
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                displayInputDialog();
+                displayDialog();
+
             }
         });
-
-
-
-
     }
 
+    private void displayDialog()
+    {
+        Dialog d= new Dialog(this);
+        d.setTitle("Zapisano!");
+        d.setContentView(R.layout.customdialog_layout);
+        nameeditText= (EditText)d.findViewById(R.id.nameEditText);
+        sexText = (EditText)d.findViewById(R.id.sexEditText);
+        rokText = (EditText)d.findViewById(R.id.rokEditText);
+        gatunekText = (EditText)d.findViewById(R.id.gatunekEditText);
+        mascText = (EditText)d.findViewById(R.id.mascEditText);
+        rasaText = (EditText)d.findViewById(R.id.rasaEditText);
+        urleditText=(EditText)d.findViewById(R.id.urlEditText);
 
-    //DISPLAY INPUT DIALOG
-    private void displayInputDialog() {
-        Dialog d = new Dialog(this);
-        d.setTitle("Save To Firebase");
-        d.setContentView(R.layout.input_dialog);
-        animalnameTxt = (EditText) d.findViewById(R.id.nameEditText);
-        gatunekTxt = (EditText) d.findViewById(R.id.propellantEditText);
-        rasaTxt = (EditText) d.findViewById(R.id.descEditText);
-        sexTxt = (EditText) d.findViewById(R.id.nameEditText2);
-        rokTxt = (EditText) d.findViewById(R.id.nameEditText3);
-        mascTxt = (EditText) d.findViewById(R.id.nameEditText4);
-        Button saveBtn = (Button) d.findViewById(R.id.saveBtn);
-        //SAVE
-        saveBtn.setOnClickListener(new View.OnClickListener() {
+        btnsave= (Button)d.findViewById(R.id.saveBtn);
+        btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //GET DATA
-                String animalname = animalnameTxt.getText().toString();
-                String gatunek = gatunekTxt.getText().toString();
-                String rasa = rasaTxt.getText().toString();
-                String sex = sexTxt.getText().toString();
-                String rok = rokTxt.getText().toString();
-                String masc = mascTxt.getText().toString();
-                //SET DATA
-                Spacecraft s = new Spacecraft();
-                s.setAnimalname(animalname);
-                s.setGatunek(gatunek);
-                s.setRasa(rasa);
-                s.setSex(sex);
-                s.setRok(rok);
-                s.setMasc(masc);
-                //SIMPLE VALIDATION
-                if (animalname != null && animalname.length() > 0) {
-                    //THEN SAVE
-                    if (helper.save(s)) {
-                        //IF SAVED CLEAR EDITXT
-                        animalnameTxt.setText("");
-                        gatunekTxt.setText("");
-                        rasaTxt.setText("");
-                        sexTxt.setText("");
-                        rokTxt.setText("");
-                        mascTxt.setText("");
-                        adapter = new CustomAdapter(AnimalActivity.this, helper.retrieve());
-                        lv.setAdapter(adapter);
-                    }
-                } else {
-                    Toast.makeText(AnimalActivity.this, "Name Must Not Be Empty", Toast.LENGTH_SHORT).show();
-                }
+            public void onClick(View view) {
+                firebaseClient.savedata(nameeditText.getText().toString(),
+                        urleditText.getText().toString(),
+                        sexText.getText().toString(),
+                        rokText.getText().toString(),
+                        gatunekText.getText().toString(),
+                        mascText.getText().toString(),
+                        rasaText.getText().toString()
+                );
+
+                nameeditText.setText("");
+                urleditText.setText("");
+                sexText.setText("");
+                rokText.setText("");
+                gatunekText.setText("");
+                mascText.setText("");
+                rasaText.setText("");
+
             }
         });
+
         d.show();
+
     }
+
+
+
+
 }
