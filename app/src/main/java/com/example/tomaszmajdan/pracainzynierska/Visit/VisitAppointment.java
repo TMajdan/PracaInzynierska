@@ -1,15 +1,24 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.ArrayMap;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
+import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
+import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,24 +28,33 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.w3c.dom.Text;
+
 import java.lang.ref.SoftReference;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class VisitAppointment extends AppCompatActivity {
+    final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/visits/";
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth firebaseAuth;
     private String userId;
     private String[] doctors = new String[]{};
     private String[] animals = new String[]{};
+    private String[] visits;
     private FirebaseDatabase mFirebaseInstance2;
     private DatabaseReference mFirebaseDatabase2;
-    private ArrayMap<String, String> doc = new ArrayMap<String, String>();
-    private ArrayMap<String, String> anime = new ArrayMap<String, String>();
-
+    private DatabaseReference saveFirebaseDatabase;
+    private String[] doc = new String[]{};
+    private String[] anime = new String[]{};
+    private Calendar myCalendar = Calendar.getInstance();
+    FirebaseClient firebaseClient;
 
 
     @Override
@@ -55,7 +73,15 @@ public class VisitAppointment extends AppCompatActivity {
 
         final Spinner dropdown = (Spinner)findViewById(R.id.doctor_spinner);
         final Spinner dropdown2 = (Spinner)findViewById(R.id.animal_spinner);
+        final Spinner dropdown3 = (Spinner)findViewById(R.id.visittype_id);
         TextView button = (TextView)findViewById(R.id.visit);
+
+        final EditText date = (EditText)findViewById(R.id.callendar_id);
+        final EditText time = (EditText)findViewById(R.id.hours_id);
+        final EditText desc = (EditText)findViewById(R.id.opis_id);
+
+        firebaseClient = new FirebaseClient(this, DB_URL);
+
 
         mFirebaseInstance = FirebaseDatabase.getInstance();
         mFirebaseDatabase = mFirebaseInstance.getReference("doctors");
@@ -64,6 +90,7 @@ public class VisitAppointment extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser users = firebaseAuth.getCurrentUser();
         userId = users.getUid();
+        rodzajwizyty(dropdown3);
 
         mFirebaseDatabase.addChildEventListener(new ChildEventListener() {
 
@@ -72,7 +99,7 @@ public class VisitAppointment extends AppCompatActivity {
                 String nowy = dataSnapshot.child("name").getValue().toString();
                 String id = dataSnapshot.getKey().toString();
                 doctors = addElement(doctors, nowy);
-                doc.put(nowy, id);
+                doc = addElement(doc, id);
                 func(dropdown, doctors);
             }
             @Override
@@ -92,7 +119,7 @@ public class VisitAppointment extends AppCompatActivity {
                 String nowy = dataSnapshot.child("name").getValue().toString();
                 String id = userId + "/" + dataSnapshot.getKey().toString();
                 animals = addElement(animals, nowy);
-                anime.put(nowy, id);
+                anime = addElement(anime, id);
                 func(dropdown2, animals);
             }
             @Override
@@ -108,13 +135,82 @@ public class VisitAppointment extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Object d = dropdown.getItemAtPosition(dropdown.getId());
+                int d = dropdown.getSelectedItemPosition();
+                int a = dropdown2.getSelectedItemPosition();
+                int v = dropdown3.getSelectedItemPosition();
 
-                String idDoc = doc.valueAt(doc.indexOfKey(d));
-                String text = idDoc + " ";
-                Toast.makeText(getApplicationContext(), text, Toast.LENGTH_LONG).show();
+                String idDoc = doc[d];
+                String idAnime = anime[a];
+                String idVisits = visits[v];
+                String pickedtime = time.getText().toString();
+                String pickeddate = date.getText().toString();
+                String opis = desc.getText().toString();
+                String status = "OCZEKUJE";
+                //String is = idAnime.substring(0, idAnime.indexOf("/"));
+                // String text = idDoc + " " + is;
+                //Toast.makeText(getApplicationContext(),pickeddate,Toast.LENGTH_LONG).show();
+
+                firebaseClient.saveVisit(idDoc, idAnime, pickeddate, pickedtime, idVisits, opis,status);
+
+                date.setText("");
+                time.setText("");
+                desc.setText("");
+                Toast.makeText(getApplicationContext(),"Pomyślnie umówiono wizytę!",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), MyVisitActivity.class));
             }
         });
+
+
+        final DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String myFormat = "dd/MMM/yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
+                date.setText(sdf.format(myCalendar.getTime()));
+
+            }
+
+        };
+
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(VisitAppointment.this, datePickerListener, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+            }
+        });
+
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(VisitAppointment.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        time.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.setTitle("Wybierz godzinę");
+                mTimePicker.show();
+
+            }
+        });
+
+
+
+
+
+
 
     }
     String[] addElement(String[] org, String added) {
@@ -127,6 +223,16 @@ public class VisitAppointment extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, items);
         dropdown.setAdapter(adapter);
 
+    }
+
+    public void rodzajwizyty(Spinner dropdown) {
+
+
+        visits = new String[]{"Szczepienie", "Wizyta zwykła", "Leczenie"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, visits);
+
+        dropdown.setAdapter(adapter);
     }
 
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.Upcomings;
 import com.example.tomaszmajdan.pracainzynierska.R;
 
@@ -20,7 +21,7 @@ import java.util.ArrayList;
 
 public class VisitsBaseAdapter extends BaseAdapter {
 
-    private Context c;
+    static public Context c;
     private ArrayList<Visits> visits;
 
 
@@ -28,7 +29,6 @@ public class VisitsBaseAdapter extends BaseAdapter {
         this.c = context;
         this.visits = visits;
     }
-
 
 
 
@@ -63,14 +63,19 @@ public class VisitsBaseAdapter extends BaseAdapter {
         TextView rodzajTxt = (TextView) convertView.findViewById(R.id.rodzaj_id);
 
         final Visits u= (Visits) this.getItem(position);
-        imieTxt.setText(u.getName());
-        roomTxt.setText(u.getRoom());
-        godzTxt.setText(u.getGodz());
+
+
+        godzTxt.setText(u.getTime());
         dateTxt.setText(u.getDate());
         opisTxt.setText(u.getOpis());
-        animalTxt.setText(u.getAnimal());
+        String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/animals/" + u.getAnimal();
+        FirebaseClient fc = new FirebaseClient(c, DB_URL);
+        fc.getName(animalTxt);
+        DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/doctors/" + u.getDoctor();
+        fc.setDB_URL(DB_URL);
+        fc.getName(imieTxt);
         statusTxt.setText(u.getStatus());
-        rodzajTxt.setText(u.getRodzaj());
+        rodzajTxt.setText(u.getRodzajwizyty());
 
         return convertView;
     }

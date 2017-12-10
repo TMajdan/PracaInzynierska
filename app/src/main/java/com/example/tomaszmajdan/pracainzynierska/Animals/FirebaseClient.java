@@ -1,8 +1,10 @@
 package com.example.tomaszmajdan.pracainzynierska.Animals;
 
 import android.content.Context;
+import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -11,6 +13,8 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.tomaszmajdan.pracainzynierska.MainActivity;
+import com.example.tomaszmajdan.pracainzynierska.Visit.SendVisit;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -26,12 +30,18 @@ import java.util.ArrayList;
 public class FirebaseClient  {
 
     Context c;
+
+
+
     String DB_URL;
     ListView listView;
     Firebase firebase;
     ArrayList<Dog> dogies= new ArrayList<>();
     CustomAdapter customAdapter;
 
+    public void setDB_URL(String DB_URL) {
+        this.DB_URL = DB_URL;
+    }
 
     public  FirebaseClient(Context c, String DB_URL, ListView listView)
     {
@@ -43,6 +53,15 @@ public class FirebaseClient  {
         Firebase.setAndroidContext(c);
         firebase=new Firebase(DB_URL);
     }
+    public  FirebaseClient(Context c, String DB_URL)
+    {
+        this.c= c;
+        this.DB_URL= DB_URL;
+
+        Firebase.setAndroidContext(c);
+        firebase=new Firebase(DB_URL);
+    }
+
 
     public  void savedata(String name, String url, String gatunek, String sex, String rasa, String rok, String masc)
     {
@@ -58,6 +77,23 @@ public class FirebaseClient  {
         firebase.push().setValue(d);
 
 
+    }
+
+    public void saveVisit(String doctor, String animal, String date, String time, String rodzajwizyty, String opis, String status){
+        SendVisit s = new SendVisit();
+        s.setAnimal(animal);
+        s.setDate(date);
+        s.setDoctor(doctor);
+        s.setOpis(opis);
+        s.setRodzajwizyty(rodzajwizyty);
+        s.setTime(time);
+        s.setStatus(status);
+
+        String push = firebase.push().getKey();
+        firebase.child(push).setValue(s);
+        Object o = push;
+        Firebase firebase1 = new Firebase("https://pracainzynierska-f1b54.firebaseio.com/users/" + MainActivity.userID + "/visits/" + push);
+        firebase1.setValue(o);
     }
 
     public  void refreshdata()
@@ -101,4 +137,39 @@ public class FirebaseClient  {
             Toast.makeText(c, "No data", Toast.LENGTH_SHORT).show();
         }
     }
+    TextView edit,edit2;
+    public void getName(TextView edit1) {
+        edit = edit1;
+
+        firebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Object r = dataSnapshot.child("name").getValue();
+                if(r != null) edit.setText(r.toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
+    public void getRoom(TextView edit1) {
+        edit2 = edit1;
+
+        firebase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Object r = dataSnapshot.child("room").getValue();
+                if(r != null) edit2.setText(r.toString());
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
 }

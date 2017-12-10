@@ -70,7 +70,8 @@ public class AnimalActivity extends Activity {
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseClient.savedata(nameeditText.getText().toString(),
+                firebaseClient.savedata(
+                        nameeditText.getText().toString(),
                         urleditText.getText().toString(),
                         sexText.getText().toString(),
                         rokText.getText().toString(),

@@ -51,19 +51,16 @@ public class FirebaseVisitHelper extends Fragment {
         )
 
 
-
-
         {
             @Override
             protected void populateViewHolder(VisitViewHolder viewHolder, Visits model, int position) {
-                viewHolder.set_Name(model.getName());
-                viewHolder.setNr_room(model.getRoom());
+                viewHolder.set_Name(model.getDoctor());
                 viewHolder.setAnimal(model.getAnimal());
-                viewHolder.setGodz(model.getGodz());
+                viewHolder.setGodz(model.getTime());
                 viewHolder.setDate(model.getDate());
                 viewHolder.setStatus(model.getStatus());
                 viewHolder.setOpis(model.getOpis());
-                viewHolder.setRodzaj(model.getRodzaj());
+                viewHolder.setRodzaj(model.getRodzajwizyty());
 
 
             }

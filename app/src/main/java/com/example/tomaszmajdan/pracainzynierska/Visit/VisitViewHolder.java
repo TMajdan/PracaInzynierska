@@ -1,5 +1,6 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.R;
 
 /**
@@ -19,14 +21,15 @@ public class VisitViewHolder extends RecyclerView.ViewHolder {
     TextView textView_name, textView_room,textView_godz, texView_date, texView_opis, texView_animal, texView_status, texView_rodzaj;
     Button ReceptView, zalView;
     ImageView imageView_phonecall;
+    static Context c;
 
-
-
+    static public void setContext(Context context) {
+        c = context;
+    }
 
     public VisitViewHolder(View itemView) {
         super(itemView);
         mView=itemView;
-
         textView_name = (TextView)itemView.findViewById(R.id.doktor_id);
         //textView_phone = (TextView) itemView.findViewById(R.id.doctor_phone);
         textView_room = (TextView) itemView.findViewById(R.id.room_id);
@@ -90,21 +93,20 @@ public class VisitViewHolder extends RecyclerView.ViewHolder {
     }
     public void set_Name(String name)
     {
-        textView_name.setText(name);
+        String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/doctors/" + name;
+        FirebaseClient fc = new FirebaseClient(c, DB_URL);
+        fc.getName(textView_name);
+        fc.getRoom(textView_room);
     }
 
-    //public void setPhone_call(String phone)
-   // {
-    //    textView_phone.setText(phone);
-   // }
-    public void setNr_room(String room)
-    {
-        textView_room.setText(room);
-    }
     public void setGodz(String godz) { textView_godz.setText(godz);}
     public void setDate(String date) { texView_date.setText(date);}
     public void setOpis(String opis) { texView_opis.setText(opis);}
-    public void setAnimal(String animal) { texView_animal.setText(animal);}
+    public void setAnimal(String animal) {
+        String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/animals/" + animal;
+        FirebaseClient fc = new FirebaseClient(c, DB_URL);
+        fc.getName(texView_animal);
+    }
     public void setStatus(String status) { texView_status.setText(status);}
     public void setRodzaj(String rodzaj) { texView_rodzaj.setText(rodzaj);}
 
