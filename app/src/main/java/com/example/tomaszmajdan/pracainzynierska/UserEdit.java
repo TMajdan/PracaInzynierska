@@ -27,15 +27,15 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import static com.example.tomaszmajdan.pracainzynierska.R.id.add;
-import static com.example.tomaszmajdan.pracainzynierska.R.id.address;
+
 import static com.example.tomaszmajdan.pracainzynierska.R.id.adres_id;
-import static com.example.tomaszmajdan.pracainzynierska.R.id.city;
+
 import static com.example.tomaszmajdan.pracainzynierska.R.id.city_id;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.name;
 //import static com.example.tomaszmajdan.pracainzynierska.R.id.pesel;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.phone;
 import static com.example.tomaszmajdan.pracainzynierska.R.id.phone_id;
-import static com.example.tomaszmajdan.pracainzynierska.R.id.surname;
+
 //import static com.example.tomaszmajdan.pracainzynierska.R.id.zip;
 
 public class UserEdit extends Activity {

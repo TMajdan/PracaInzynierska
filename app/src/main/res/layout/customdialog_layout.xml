@@ -98,15 +98,17 @@
                 android:layout_width="350dp"
                 android:layout_height="wrap_content"
                 android:hint="Url"
-                android:visibility="invisible" />
+                android:visibility="gone" />
         </android.support.design.widget.TextInputLayout>
-        <Button android:id="@+id/saveBtn"
+
+        <Button
+            android:id="@+id/saveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Save"
-            android:clickable="true"
-            android:background="@color/colorAccent"
             android:layout_marginTop="40dp"
-            android:textColor="@android:color/white"/>
+            android:background="@color/colorAccent"
+            android:clickable="true"
+            android:text="Zapisz"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by tomas on 25.11.2017.
@@ -9,83 +10,85 @@ import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 public class
 Visits {
 
-    String doctor;
-    String time;
-    String date;
-    String animal;
-    String opis;
-    String status;
+    private String doctor;
+    private String time;
+    private String date;
+    private String animal;
+    private String opis;
+    private String status;
+    private String room;
+    private String rodzajwizyty;
+    @JsonProperty("room")
+    public String getroom() {
+        return room;
+    }
 
-    public String getDoctor() {
+    public void setroom(String room) {
+        this.room = room;
+    }
+    @JsonProperty("doctor")
+    public String getdoctor() {
         return doctor;
     }
 
-    public void setDoctor(String doctor) {
+    public void setdoctor(String doctor) {
         this.doctor = doctor;
     }
-
-    public String getTime() {
+    @JsonProperty("time")
+    public String gettime() {
         return time;
     }
 
-    public void setTime(String time) {
+    public void settime(String time) {
         this.time = time;
     }
-
-    public String getDate() {
+    @JsonProperty("date")
+    public String getdate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setdate(String date) {
         this.date = date;
     }
-
-    public String getAnimal() {
+    @JsonProperty("animal")
+    public String getanimal() {
         return animal;
     }
 
-    public void setAnimal(String animal) {
+    public void setanimal(String animal) {
         this.animal = animal;
     }
-
-        public String getOpis() {
+    @JsonProperty("opis")
+        public String getopis() {
         return opis;
     }
 
-    public void setOpis(String opis) {
+    public void setopis(String opis) {
         this.opis = opis;
     }
-
-    public String getStatus() {
+    @JsonProperty("status")
+    public String getstatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setstatus(String status) {
         this.status = status;
     }
-
-    public String getRodzajwizyty() {
+    @JsonProperty("rodzajwizyty")
+    public String getrodzajwizyty() {
         return rodzajwizyty;
     }
 
-    public void setRodzajwizyty(String rodzajwizyty) {
+    public void setrodzajwizyty(String rodzajwizyty) {
         this.rodzajwizyty = rodzajwizyty;
     }
 
-    String rodzajwizyty;
+
 
     //private String title,description,image;
     public Visits(){}
 
-    public Visits(String doctor, String time, String date, String animal, String opis, String status, String rodzajwizyty) {
-        this.doctor = doctor;
-        this.time = time;
-        this.date = date;
-        this.animal = animal;
-        this.opis = opis;
-        this.status = status;
-        this.rodzajwizyty = rodzajwizyty;
-    }
+
 
 
 

@@ -14,7 +14,9 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
+import com.example.tomaszmajdan.pracainzynierska.Visit.CustomAdapterVisit;
 import com.example.tomaszmajdan.pracainzynierska.Visit.SendVisit;
+import com.example.tomaszmajdan.pracainzynierska.Visit.Visits;
 import com.firebase.client.ChildEventListener;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -37,7 +39,9 @@ public class FirebaseClient  {
     ListView listView;
     Firebase firebase;
     ArrayList<Dog> dogies= new ArrayList<>();
+    ArrayList<Visits> visits = new ArrayList<>();
     CustomAdapter customAdapter;
+    CustomAdapterVisit customAdapterVisit;
 
     public void setDB_URL(String DB_URL) {
         this.DB_URL = DB_URL;
@@ -53,6 +57,8 @@ public class FirebaseClient  {
         Firebase.setAndroidContext(c);
         firebase=new Firebase(DB_URL);
     }
+
+
     public  FirebaseClient(Context c, String DB_URL)
     {
         this.c= c;
@@ -137,15 +143,19 @@ public class FirebaseClient  {
             Toast.makeText(c, "No data", Toast.LENGTH_SHORT).show();
         }
     }
-    TextView edit,edit2;
-    public void getName(TextView edit1) {
-        edit = edit1;
+
+
+
+
+    public  void refreshdataVisits()
+    {
 
         firebase.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Object r = dataSnapshot.child("name").getValue();
-                if(r != null) edit.setText(r.toString());
+
+                getupdatesVisits(dataSnapshot);
             }
 
             @Override
@@ -155,21 +165,36 @@ public class FirebaseClient  {
         });
     }
 
-    public void getRoom(TextView edit1) {
-        edit2 = edit1;
+    public void getupdatesVisits(DataSnapshot dataSnapshot){
 
-        firebase.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Object r = dataSnapshot.child("room").getValue();
-                if(r != null) edit2.setText(r.toString());
-            }
+        visits.clear();
 
-            @Override
-            public void onCancelled(FirebaseError firebaseError) {
+        for(DataSnapshot ds2 :dataSnapshot.getChildren()){
+            Visits v = new Visits();
+            v.setdoctor(ds2.getValue(Visits.class).getdoctor());
+            v.setroom(ds2.getValue(Visits.class).getroom());
+            v.settime(ds2.getValue(Visits.class).gettime());
+            v.setdate(ds2.getValue(Visits.class).getdate());
+            v.setopis(ds2.getValue(Visits.class).getopis());
+            v.setanimal(ds2.getValue(Visits.class).getanimal());
+            v.setstatus(ds2.getValue(Visits.class).getstatus());
+            v.setrodzajwizyty(ds2.getValue(Visits.class).getrodzajwizyty());
 
-            }
-        });
+            visits.add(v);
+
+
+
+        }
+        if(visits.size()>0)
+        {
+            customAdapterVisit=new CustomAdapterVisit(c, visits);
+            listView.setAdapter((ListAdapter) customAdapterVisit);
+        }else
+        {
+            Toast.makeText(c, "No data", Toast.LENGTH_SHORT).show();
+        }
     }
+
+
 
 }

@@ -7,54 +7,45 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.CustomAdapter;
+import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseHelper;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.FirebaseDoctorsHelper;
+import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
+import com.fasterxml.jackson.databind.DeserializationConfig;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
 public class MyVisitActivity  extends Activity {
-    private FragmentManager fmanager;
-    ImageView call;
-    DatabaseReference db;
-    FirebaseHelper helper;
-    CustomAdapter adapter;
-    private FirebaseDatabase mFirebaseInstance;
-    ListView lv;
-    private String userId;
-    private FirebaseAuth firebaseAuth;
+    //final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/visits/" + MainActivity.userID;
+    final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/visits";
+    ListView listView;
+
+    FirebaseClientVisit firebaseClient;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_visit3);
-        VisitViewHolder.setContext(getApplicationContext());
-        fmanager = getFragmentManager();
-        FragmentTransaction ft = fmanager.beginTransaction();
-        ft.replace(R.id.fragment, new FirebaseVisitHelper());
-        ft.commit();
-        //firebaseAuth = FirebaseAuth.getInstance();
-        // FirebaseUser animal = firebaseAuth.getCurrentUser();
-        // userId = animal.getUid();
-        mFirebaseInstance = FirebaseDatabase.getInstance();
+        setContentView(R.layout.activity_my_visit2);
+        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        // setSupportActionBar(toolbar);
 
-        // get reference to 'users' node
-        db = mFirebaseInstance.getReference("/visits");
-        //INITIALIZE FIREBASE DB
-        //db = FirebaseDatabase.getInstance().getReference();
-        // helper = new FirebaseHelper(db);
-        //ADAPTER
-        // adapter = new CustomAdapter(this, helper.retrieve());
-        //  lv.setAdapter(adapter);
-        //  adapter.notifyDataSetChanged();
 
+
+        listView=(ListView)findViewById(R.id.listview);
+        firebaseClient= new FirebaseClientVisit(this, DB_URL,listView);
+        firebaseClient.refreshdataVisits();
 
     }
 }
