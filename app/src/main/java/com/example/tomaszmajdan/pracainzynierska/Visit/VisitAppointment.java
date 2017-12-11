@@ -40,7 +40,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class VisitAppointment extends AppCompatActivity {
-    final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/visits/";
+    final static  String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/visits/";
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth firebaseAuth;

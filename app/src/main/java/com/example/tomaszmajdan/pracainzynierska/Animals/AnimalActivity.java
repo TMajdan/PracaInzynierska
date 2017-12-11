@@ -24,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class AnimalActivity extends Activity {
     //String userId;
-    final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/animals/" + MainActivity.userID;
+    final static  String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/animals/" + MainActivity.userID;
     EditText nameeditText,urleditText,sexText,rokText,gatunekText,mascText,rasaText;
     Button btnsave;
     ListView listView;

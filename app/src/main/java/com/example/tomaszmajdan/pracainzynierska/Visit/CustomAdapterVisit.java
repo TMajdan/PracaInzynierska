@@ -58,12 +58,12 @@ public class CustomAdapterVisit extends BaseAdapter {
 
         MyHolderVisit holder= new MyHolderVisit(convertview);
 
-        String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/doctors/"+ visits.get(i).getdoctor();
+        String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/doctors/"+ visits.get(i).getdoctor();
         FirebaseClientVisit fcv = new FirebaseClientVisit(c,DB_URL);
         fcv.getName(holder.doktor_id);
         fcv.getRoom(holder.room_id);
 
-        String DB_URL2= "https://pracainzynierska-f1b54.firebaseio.com/animals/"+ visits.get(i).getanimal();
+        String DB_URL2= "https://pracainzynierska-dd3c1.firebaseio.com/animals/"+ visits.get(i).getanimal();
         FirebaseClientVisit fcv2 = new FirebaseClientVisit(c,DB_URL2);
         fcv2.getName(holder.animal_id);
 

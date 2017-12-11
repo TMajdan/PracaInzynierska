@@ -98,7 +98,7 @@ public class FirebaseClient  {
         String push = firebase.push().getKey();
         firebase.child(push).setValue(s);
         Object o = push;
-        Firebase firebase1 = new Firebase("https://pracainzynierska-f1b54.firebaseio.com/users/" + MainActivity.userID + "/visits/" + push);
+        Firebase firebase1 = new Firebase("https://pracainzynierska-dd3c1.firebaseio.com/users/" + MainActivity.userID + "/visits/" + push);
         firebase1.setValue(o);
     }
 

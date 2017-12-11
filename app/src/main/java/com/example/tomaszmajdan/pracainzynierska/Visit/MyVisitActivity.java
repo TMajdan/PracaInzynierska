@@ -28,7 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MyVisitActivity  extends Activity {
     //final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/visits/" + MainActivity.userID;
-    final static  String DB_URL= "https://pracainzynierska-f1b54.firebaseio.com/visits";
+    final static  String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/visits";
     ListView listView;
 
     FirebaseClientVisit firebaseClient;
