@@ -146,9 +146,7 @@ public class VisitAppointment extends AppCompatActivity {
                 String pickeddate = date.getText().toString();
                 String opis = desc.getText().toString();
                 String status = "OCZEKUJE";
-                //String is = idAnime.substring(0, idAnime.indexOf("/"));
-                // String text = idDoc + " " + is;
-                //Toast.makeText(getApplicationContext(),pickeddate,Toast.LENGTH_LONG).show();
+
 
                 firebaseClient.saveVisit(idDoc, idAnime, pickeddate, pickedtime, idVisits, opis,status);
 

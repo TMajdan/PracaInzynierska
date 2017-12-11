@@ -72,13 +72,13 @@ public class FirebaseClient  {
     public  void savedata(String name, String url, String gatunek, String sex, String rasa, String rok, String masc)
     {
         Dog d= new Dog();
-        d.setName(name);
-        d.setUrl(url);
-        d.setGatunek(gatunek);
-        d.setSex(sex);
-        d.setRasa(rasa);
-        d.setRok(rok);
-        d.setMasc(masc);
+        d.setName(name); //NAZWA
+        d.setUrl(url); // URL
+        d.setGatunek(rasa); //GATUNEK
+        d.setSex(gatunek); //SEX
+        d.setRasa(masc); //RASA
+        d.setRok(sex); //ROK
+        d.setMasc(rok);  //MASC
 
         firebase.push().setValue(d);
 
