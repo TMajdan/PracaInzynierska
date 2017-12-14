@@ -1,6 +1,8 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +10,7 @@ import android.widget.BaseAdapter;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.MyHolder;
 import com.example.tomaszmajdan.pracainzynierska.Animals.PicassoClient;
+import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
 
 import java.util.ArrayList;
@@ -58,6 +61,7 @@ public class CustomAdapterVisit extends BaseAdapter {
 
         MyHolderVisit holder= new MyHolderVisit(convertview);
 
+
         String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/doctors/"+ visits.get(i).getdoctor();
         FirebaseClientVisit fcv = new FirebaseClientVisit(c,DB_URL);
         fcv.getName(holder.doktor_id);
@@ -72,6 +76,11 @@ public class CustomAdapterVisit extends BaseAdapter {
         holder.godzina_id.setText(visits.get(i).gettime());
         holder.rodzaj_id.setText(visits.get(i).getrodzajwizyty());
         holder.opis_id.setText(visits.get(i).getopis());
+        holder.zalecenia= (visits.get(i).getZalecenia());
+        holder.recepta=(visits.get(i).getRecepty());
+
+
+
 
 
         return convertview;

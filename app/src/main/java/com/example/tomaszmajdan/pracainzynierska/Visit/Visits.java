@@ -18,6 +18,26 @@ Visits {
     private String status;
     private String room;
     private String rodzajwizyty;
+    private String zalecenia;
+    private String recepty;
+
+    public String getZalecenia() {
+        return zalecenia;
+    }
+
+    public void setZalecenia(String zalecenia) {
+        this.zalecenia = zalecenia;
+    }
+
+    public String getRecepty() {
+        return recepty;
+    }
+
+    public void setRecepty(String recepty) {
+        this.recepty = recepty;
+    }
+
+
     @JsonProperty("room")
     public String getroom() {
         return room;

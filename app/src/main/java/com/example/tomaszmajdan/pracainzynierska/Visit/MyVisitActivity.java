@@ -1,9 +1,12 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.CustomAdapter;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
@@ -33,6 +37,8 @@ public class MyVisitActivity  extends Activity {
 
     FirebaseClientVisit firebaseClient;
 
+    static Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,5 +53,11 @@ public class MyVisitActivity  extends Activity {
         firebaseClient= new FirebaseClientVisit(this, DB_URL,listView);
         firebaseClient.refreshdataVisits();
 
+        dialog=new Dialog(MyVisitActivity.this);
+
+
+
     }
+
+
 }

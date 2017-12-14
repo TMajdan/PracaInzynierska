@@ -90,7 +90,8 @@ public class FirebaseClientVisit {
             v.setanimal(ds.getValue(Visits.class).getanimal());
             v.setstatus(ds.getValue(Visits.class).getstatus());
             v.setrodzajwizyty(ds.getValue(Visits.class).getrodzajwizyty());
-
+             v.setZalecenia(ds.getValue(Visits.class).getZalecenia());
+             v.setRecepty(ds.getValue(Visits.class).getRecepty());
 
             visits.add(v);
         }
