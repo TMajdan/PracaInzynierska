@@ -1,14 +1,18 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.firebase.client.Firebase;
@@ -122,6 +126,10 @@ public class MyHolderVisit {
 
                 firebase.removeValue();
                 dialog.dismiss();
+
+
+
+
 
             }
         });

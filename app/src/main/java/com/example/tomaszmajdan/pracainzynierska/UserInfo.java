@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,7 +27,7 @@ public class UserInfo extends Activity implements View.OnClickListener {
 
     private EditText editTextName, editTextSurname, editTextPhone,
             editTextAddress, editTextZip, editTextPesel, editTextCity;
-    private Button buttonSave;
+    private TextView buttonSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +61,11 @@ public class UserInfo extends Activity implements View.OnClickListener {
 
         //initializing views
 
-        buttonSa = (Button) findViewById(R.id.buttonSave);
+        buttonSave = (TextView) findViewById(R.id.buttonSave);
 
 
         //adding listener to button
-        buttonSa.setOnClickListener(this);
+        buttonSave.setOnClickListener(this);
     }
 
 
@@ -91,12 +92,19 @@ public class UserInfo extends Activity implements View.OnClickListener {
     public void onClick(View view) {
         //if save is pressed
 
-        if(view == buttonSa){
-            saveUserInformation();
-            //closing activity
-            finish();
-            //starting login activity
-            startActivity(new Intent(this, MainActivity.class));
+        if(view == buttonSave){
+            if(editTextName.getText().toString().isEmpty() || editTextSurname.getText().toString().isEmpty() ||
+                    editTextAddress.toString().isEmpty() || editTextCity.getText().toString().isEmpty() || editTextPhone.getText().toString().isEmpty())
+            {
+                Toast.makeText(getApplicationContext(), "Uzupełnij wszystkie pola!", Toast.LENGTH_LONG).show();
+            }
+            else {
+                saveUserInformation();
+                //closing activity
+                finish();
+                //starting login activity
+                startActivity(new Intent(this, MainActivity.class));
+            }
         }
 
     }

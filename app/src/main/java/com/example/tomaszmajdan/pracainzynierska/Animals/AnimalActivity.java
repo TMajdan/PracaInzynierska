@@ -26,7 +26,7 @@ public class AnimalActivity extends Activity {
     //String userId;
     final static  String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/animals/" + MainActivity.userID;
     EditText nameeditText,urleditText,sexText,rokText,gatunekText,mascText,rasaText;
-    Button btnsave;
+    Button btnsave,anulBtn;
     ListView listView;
     FirebaseClient firebaseClient;
 
@@ -55,7 +55,7 @@ public class AnimalActivity extends Activity {
 
     private void displayDialog()
     {
-        Dialog d= new Dialog(this);
+        final Dialog d= new Dialog(this);
         d.setTitle("Zapisano!");
         d.setContentView(R.layout.customdialog_layout);
         nameeditText= (EditText)d.findViewById(R.id.nameEditText);
@@ -67,27 +67,23 @@ public class AnimalActivity extends Activity {
         urleditText=(EditText)d.findViewById(R.id.urlEditText);
 
         btnsave= (Button)d.findViewById(R.id.saveBtn);
+        anulBtn = (Button)d.findViewById(R.id.anulBtn);
+
+        anulBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d.dismiss();
+
+            }
+        });
+
+
+
+
         btnsave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                firebaseClient.savedata(
-                        nameeditText.getText().toString(),
-                        urleditText.getText().toString(),
-                        sexText.getText().toString(),
-                        rokText.getText().toString(),
-                        gatunekText.getText().toString(),
-                        mascText.getText().toString(),
-                        rasaText.getText().toString()
-                );
-
-                nameeditText.setText("");
-                urleditText.setText("");
-                sexText.setText("");
-                rokText.setText("");
-                gatunekText.setText("");
-                mascText.setText("");
-                rasaText.setText("");
-
+                CreateNewAnimal();
             }
         });
 
@@ -95,6 +91,35 @@ public class AnimalActivity extends Activity {
 
     }
 
+
+    public void CreateNewAnimal()
+    {
+
+        if (nameeditText.getText().toString().isEmpty() || sexText.getText().toString().isEmpty()
+                || rokText.getText().toString().isEmpty() || gatunekText.getText().toString().isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Uzupełnij wymagane pola!", Toast.LENGTH_LONG).show();
+        } else
+        {
+            firebaseClient.savedata(
+                    nameeditText.getText().toString(),
+                    urleditText.getText().toString(),
+                    sexText.getText().toString(),
+                    rokText.getText().toString(),
+                    gatunekText.getText().toString(),
+                    mascText.getText().toString(),
+                    rasaText.getText().toString()
+            );
+
+            nameeditText.setText("");
+            urleditText.setText("");
+            sexText.setText("");
+            rokText.setText("");
+            gatunekText.setText("");
+            mascText.setText("");
+            rasaText.setText("");
+
+        }
+    }
 
 
 

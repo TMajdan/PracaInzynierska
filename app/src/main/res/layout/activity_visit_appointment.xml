@@ -448,7 +448,7 @@
 
 
 
-    <!--****PAY****-->
+
     <TextView
         android:id="@+id/visit"
         android:layout_width="match_parent"

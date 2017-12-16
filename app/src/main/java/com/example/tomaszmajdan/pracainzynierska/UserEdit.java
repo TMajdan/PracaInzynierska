@@ -43,7 +43,7 @@ public class UserEdit extends Activity {
     private static final String TAG = UserEdit.class.getSimpleName();
     private TextView txtName, txtSurname, txtCity, txtAdres, txtPhone;
     private EditText inputName, inputSurname, inputPesel, inputPhone, inputCity, inputAddress, inputZip;
-    private Button btnSave, btnBack;
+    private TextView btnSave, btnBack;
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
     private FirebaseAuth firebaseAuth;
@@ -69,7 +69,6 @@ public class UserEdit extends Activity {
 
 
 
-        btnSave = (Button) findViewById(R.id.btn_save);
         txtName = (TextView) findViewById(R.id.textname_id);
         txtSurname = (TextView) findViewById(R.id.textsurname_id);
         txtCity = (TextView) findViewById(R.id.textcity_id);
@@ -84,7 +83,7 @@ public class UserEdit extends Activity {
         inputPhone = (EditText) findViewById(phone_id);
 
 
-        btnSave = (Button) findViewById(R.id.btn_save);
+        btnSave = (TextView) findViewById(R.id.btn_save);
 
 
        // FirebaseUser user = firebaseAuth.getCurrentUser();

@@ -140,7 +140,7 @@ public class FirebaseClient  {
             listView.setAdapter((ListAdapter) customAdapter);
         }else
         {
-            Toast.makeText(c, "No data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Brak utworzonych zwierząt!", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -191,7 +191,7 @@ public class FirebaseClient  {
             listView.setAdapter((ListAdapter) customAdapterVisit);
         }else
         {
-            Toast.makeText(c, "No data", Toast.LENGTH_SHORT).show();
+            Toast.makeText(c, "Brak umówionych wizyt!", Toast.LENGTH_SHORT).show();
         }
     }
 

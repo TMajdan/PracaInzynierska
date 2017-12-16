@@ -5,7 +5,7 @@
     <color name="colorAccent">#ff8765</color>
 
     <color name="bg_login">#26ae90</color>
-    <color name="bg_register">#2e3237</color>
+    <color name="bg_register">#000000</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
@@ -21,6 +21,8 @@
     <color name="colorLightGray">#a6abae</color>
     <color name="colorGray">#495c67</color>
     <color name="colorBackroundWhite">#f0f2ea</color>
+    <color name="colorHead">#363147</color>
+    <color name="colorpara">#8b8a8d</color>
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
@@ -53,5 +55,6 @@
         <item>@color/dot_dark_screen3</item>
         <item>@color/dot_dark_screen4</item>
     </array>
+
 
 </resources>

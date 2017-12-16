@@ -372,12 +372,17 @@
             >
 
 
-            <Button
+            <TextView
                 android:id="@+id/btn_save"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_weight="1"
-                android:text="Zapisz" />
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:padding="11dp"
+                android:text="Zapisz"
+                android:textColor="@color/button_text_color"
+                android:textSize="20dp" />
         </LinearLayout>
     </LinearLayout>
 

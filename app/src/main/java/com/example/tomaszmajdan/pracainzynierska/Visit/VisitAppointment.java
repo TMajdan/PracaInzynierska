@@ -1,6 +1,8 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.ArrayMap;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -16,10 +19,12 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
+import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -39,7 +44,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class VisitAppointment extends AppCompatActivity {
+public class VisitAppointment extends Activity {
     final static  String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/visits/";
     private DatabaseReference mFirebaseDatabase;
     private FirebaseDatabase mFirebaseInstance;
@@ -55,6 +60,9 @@ public class VisitAppointment extends AppCompatActivity {
     private String[] anime = new String[]{};
     private Calendar myCalendar = Calendar.getInstance();
     FirebaseClient firebaseClient;
+    private Dialog dialog;
+    private Button okBtn,anulBtn;
+
 
 
     @Override
@@ -79,6 +87,8 @@ public class VisitAppointment extends AppCompatActivity {
         final EditText date = (EditText)findViewById(R.id.callendar_id);
         final EditText time = (EditText)findViewById(R.id.hours_id);
         final EditText desc = (EditText)findViewById(R.id.opis_id);
+
+        dialog = new Dialog(VisitAppointment.this);
 
         firebaseClient = new FirebaseClient(this, DB_URL);
 
@@ -135,26 +145,39 @@ public class VisitAppointment extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int d = dropdown.getSelectedItemPosition();
-                int a = dropdown2.getSelectedItemPosition();
-                int v = dropdown3.getSelectedItemPosition();
+                int wartosc = dropdown2.getSelectedItemPosition();
+                if(wartosc==(-1))
+                {
+                    Toast.makeText(getApplicationContext(), "Brak utworzonych zwierząt!", Toast.LENGTH_LONG).show();
+                    newAnimal();
 
-                String idDoc = doc[d];
-                String idAnime = anime[a];
-                String idVisits = visits[v];
-                String pickedtime = time.getText().toString();
-                String pickeddate = date.getText().toString();
-                String opis = desc.getText().toString();
-                String status = "OCZEKUJE";
+                }
+                else if(time.getText().toString().isEmpty() || date.getText().toString().isEmpty())
+                {
+                    Toast.makeText(getApplicationContext(), "Wybiez datę i godzinę!", Toast.LENGTH_LONG).show();
+                }
+                else {
+                    int d = dropdown.getSelectedItemPosition();
+                    int a = dropdown2.getSelectedItemPosition();
+                    int v = dropdown3.getSelectedItemPosition();
+
+                    String idDoc = doc[d];
+                    String idAnime = anime[a];
+                    String idVisits = visits[v];
+                    String pickedtime = time.getText().toString();
+                    String pickeddate = date.getText().toString();
+                    String opis = desc.getText().toString();
+                    String status = "OCZEKUJE";
 
 
-                firebaseClient.saveVisit(idDoc, idAnime, pickeddate, pickedtime, idVisits, opis,status);
+                    firebaseClient.saveVisit(idDoc, idAnime, pickeddate, pickedtime, idVisits, opis, status);
 
-                date.setText("");
-                time.setText("");
-                desc.setText("");
-                Toast.makeText(getApplicationContext(),"Pomyślnie umówiono wizytę!",Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), MyVisitActivity.class));
+                    date.setText("");
+                    time.setText("");
+                    desc.setText("");
+                    Toast.makeText(getApplicationContext(), "Pomyślnie umówiono wizytę!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), MyVisitActivity.class));
+                }
             }
         });
 
@@ -211,6 +234,38 @@ public class VisitAppointment extends AppCompatActivity {
 
 
     }
+
+
+    private void newAnimal() {
+        dialog.setContentView(R.layout.dialog_anuluj);
+
+        okBtn = (Button) dialog.findViewById(R.id.okBtn2);
+        anulBtn = (Button) dialog.findViewById(R.id.okBtn);
+        TextView recText = (TextView) dialog.findViewById(R.id.recText);
+        recText.setText("Czy chcesz utworzyć nowe zwierzę?");
+
+        dialog.show();
+
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), AnimalActivity.class));
+
+            }
+        });
+        anulBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+
+
+
+
     String[] addElement(String[] org, String added) {
         String[] result = Arrays.copyOf(org, org.length +1);
         result[org.length] = added;

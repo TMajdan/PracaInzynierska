@@ -9,6 +9,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="Czy chcesz anulować wizytę?"
+        android:textAlignment="center"
+        android:textColor="@color/cardview_dark_background"
         android:textSize="18sp" />
 
     <LinearLayout
@@ -21,6 +23,7 @@
             android:id="@+id/okBtn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
             android:layout_marginTop="40dp"
             android:layout_weight="1"
             android:background="@color/colorAccent"
@@ -32,6 +35,7 @@
             android:id="@+id/okBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="40dp"
             android:layout_weight="1"
             android:background="@color/colorAccent"
