@@ -20,6 +20,18 @@ Visits {
     private String rodzajwizyty;
     private String zalecenia;
     private String recepty;
+    private String key;
+
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+
 
     public String getZalecenia() {
         return zalecenia;
@@ -102,6 +114,7 @@ Visits {
     public void setrodzajwizyty(String rodzajwizyty) {
         this.rodzajwizyty = rodzajwizyty;
     }
+
 
 
 

@@ -2,13 +2,16 @@ package com.example.tomaszmajdan.pracainzynierska.Visit;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.R;
+import com.firebase.client.Firebase;
 
 /**
  * Created by tomas on 10.12.2017.
@@ -18,8 +21,8 @@ import com.example.tomaszmajdan.pracainzynierska.R;
 
 public class MyHolderVisit {
 
-    TextView doktor_id, status_id, data_id, godzina_id, room_id, animal_id, rodzaj_id, opis_id, receptaText, zaleceniaText;
-    Button zalView, ReceptView, okBtn;
+    TextView doktor_id, status_id, data_id, godzina_id, room_id, animal_id, rodzaj_id, opis_id, receptaText, zaleceniaText,visit_id;
+    Button zalView, ReceptView, okBtn,anulView,anulBtn;
     Dialog dialog;
     String zalecenia,recepta;
 
@@ -36,9 +39,10 @@ public class MyHolderVisit {
         animal_id = (TextView) itemView.findViewById(R.id.animal_id);
         rodzaj_id = (TextView) itemView.findViewById(R.id.rodzaj_id);
         opis_id = (TextView) itemView.findViewById(R.id.opis_id);
-
+        anulView = (Button) itemView.findViewById(R.id.anulView);
         ReceptView = (Button) itemView.findViewById(R.id.recView);
         zalView = (Button) itemView.findViewById(R.id.zalView);
+        visit_id = (TextView) itemView.findViewById(R.id.visit_id);
         //Code Snippet For Alert Dialog With Action
 
 
@@ -60,6 +64,15 @@ public class MyHolderVisit {
             }
         });
 
+        anulView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                cancelDialog(visit_id);
+
+            }
+        });
+
     }
 
     private void displayDialog(String zalecenia) {
@@ -72,7 +85,7 @@ public class MyHolderVisit {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //this.finalize();
+                dialog.dismiss();
             }
         });
 
@@ -87,11 +100,41 @@ public class MyHolderVisit {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //this.finalize();
+                dialog.dismiss();
             }
         });
 
     }
+
+    private void cancelDialog(final TextView visit_id) {
+        dialog = MyVisitActivity.dialog;
+        dialog.setContentView(R.layout.dialog_anuluj);
+
+        okBtn = (Button) dialog.findViewById(R.id.okBtn2);
+        anulBtn = (Button) dialog.findViewById(R.id.okBtn);
+        dialog.show();
+
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/visits/"+visit_id.getText().toString();
+                Firebase firebase = new Firebase(DB_URL);
+
+                firebase.removeValue();
+                dialog.dismiss();
+
+            }
+        });
+       anulBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+
+    }
+
+
 }
 
 

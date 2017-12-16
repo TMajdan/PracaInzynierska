@@ -32,6 +32,7 @@ public class FirebaseClientVisit {
     CustomAdapter customAdapter;
     CustomAdapterVisit customAdapterVisit;
 
+
     public void setDB_URL(String DB_URL) {
         this.DB_URL = DB_URL;
     }
@@ -82,18 +83,20 @@ public class FirebaseClientVisit {
 
         if(ds.child("animal").getValue() != null && ds.child("animal").getValue().toString().contains(MainActivity.userID)) {
             Visits v = new Visits();
+            v.setstatus(ds.getValue(Visits.class).getstatus());
             v.setdoctor(ds.getValue(Visits.class).getdoctor());
             v.setroom(ds.getValue(Visits.class).getroom());
             v.settime(ds.getValue(Visits.class).gettime());
             v.setdate(ds.getValue(Visits.class).getdate());
             v.setopis(ds.getValue(Visits.class).getopis());
             v.setanimal(ds.getValue(Visits.class).getanimal());
-            v.setstatus(ds.getValue(Visits.class).getstatus());
             v.setrodzajwizyty(ds.getValue(Visits.class).getrodzajwizyty());
              v.setZalecenia(ds.getValue(Visits.class).getZalecenia());
              v.setRecepty(ds.getValue(Visits.class).getRecepty());
+            v.setKey(ds.getKey());
 
             visits.add(v);
+
         }
 
 
@@ -142,6 +145,7 @@ public class FirebaseClientVisit {
             }
         });
     }
+
 
 
 

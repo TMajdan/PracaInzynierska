@@ -153,6 +153,16 @@
             android:textColor="@color/button_text_color" />
 
         <Button
+            android:id="@+id/anulujView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:text="Anuluj"
+            android:textColor="@color/button_text_color" />
+
+        <Button
             android:id="@+id/recView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

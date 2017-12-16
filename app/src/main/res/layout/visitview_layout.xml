@@ -135,14 +135,26 @@
             android:textSize="18dp" />
 
         <Button
+            android:id="@+id/anulView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_bg_rounded_corners"
+            android:text="Anuluj"
+            android:textColor="@color/button_text_color"
+            android:visibility="invisible" />
+
+        <Button
             android:id="@+id/zalView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_toStartOf="@+id/recView"
+            android:layout_toStartOf="@+id/anulView"
             android:background="@drawable/button_bg_rounded_corners"
             android:text="Zalecenia"
-            android:textColor="@color/button_text_color" />
+            android:textColor="@color/button_text_color"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/recView"
@@ -152,7 +164,17 @@
             android:layout_alignParentEnd="true"
             android:background="@drawable/button_bg_rounded_corners"
             android:text="Recepta"
-            android:textColor="@color/button_text_color" />
+            android:textColor="@color/button_text_color"
+            android:visibility="invisible" />
+
+        <TextView
+            android:id="@+id/visit_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/anulView"
+            android:layout_toEndOf="@+id/animal_id"
+            android:text="TextView"
+            android:visibility="gone" />
 
 
     </RelativeLayout>

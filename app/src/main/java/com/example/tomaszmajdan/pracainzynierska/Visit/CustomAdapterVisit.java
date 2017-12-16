@@ -71,13 +71,32 @@ public class CustomAdapterVisit extends BaseAdapter {
         FirebaseClientVisit fcv2 = new FirebaseClientVisit(c,DB_URL2);
         fcv2.getName(holder.animal_id);
 
-        holder.status_id.setText(visits.get(i).getstatus());
+
         holder.data_id.setText(visits.get(i).getdate());
         holder.godzina_id.setText(visits.get(i).gettime());
         holder.rodzaj_id.setText(visits.get(i).getrodzajwizyty());
         holder.opis_id.setText(visits.get(i).getopis());
-        holder.zalecenia= (visits.get(i).getZalecenia());
-        holder.recepta=(visits.get(i).getRecepty());
+        holder.status_id.setText(visits.get(i).getstatus());
+
+
+
+        if(visits.get(i).getstatus().indexOf("ZAKOŃCZONO")>=0) {
+            holder.zalView.setVisibility(View.VISIBLE);
+            holder.ReceptView.setVisibility(View.VISIBLE);
+            holder.zalecenia=(visits.get(i).getZalecenia());
+            holder.recepta=(visits.get(i).getRecepty());
+        }
+
+        if(visits.get(i).getstatus().indexOf("OCZEKUJE")>=0){
+          holder.anulView.setVisibility(View.VISIBLE);
+          holder.visit_id.setText(visits.get(i).getKey());
+
+        }
+
+
+
+
+
 
 
 
