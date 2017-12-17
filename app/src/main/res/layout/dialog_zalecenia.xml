@@ -7,10 +7,13 @@
             android:id="@+id/zalText"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
             android:layout_weight="1"
             android:text="textZalRec"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="18sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/okBtn"

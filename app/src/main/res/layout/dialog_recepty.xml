@@ -1,16 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
 
-    <TextView
-        android:id="@+id/recText"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="textZalRec"
-        android:textColor="@color/cardview_dark_background"
-        android:textSize="18sp" />
+
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/medicine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:text="Lek:"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/dawka"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:text="Dawkowanie:"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/dawText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/dawka"
+            android:layout_below="@+id/dawka"
+            android:layout_weight="1"
+            android:text="dawText"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/recText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/medicine"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:text="textZalRec"
+            android:textColor="@color/cardview_dark_background"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <Button
         android:id="@+id/okBtn"

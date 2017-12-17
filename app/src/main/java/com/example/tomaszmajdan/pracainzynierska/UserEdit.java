@@ -132,9 +132,7 @@ public class UserEdit extends Activity {
 
 
     private void createUser (String name, String surname, String pesel, String phone, String address, String city, String zip) {
-        // TODO
-        // In real apps this userId should be fetched
-        // by implementing firebase auth
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser users = firebaseAuth.getCurrentUser();

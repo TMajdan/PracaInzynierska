@@ -3,6 +3,7 @@ package com.example.tomaszmajdan.pracainzynierska.Doctors;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -40,9 +41,12 @@ public class DoctorsActivity extends Activity {
     private String userId;
     EditText animalnameTxt, gatunekTxt, rasaTxt, rokTxt, mascTxt, sexTxt;
     private FirebaseAuth firebaseAuth;
+    static Dialog dialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_doctors3);
         fmanager = getFragmentManager();
@@ -65,5 +69,9 @@ public class DoctorsActivity extends Activity {
         //  adapter.notifyDataSetChanged();
 
 
+
+
     }
+
+
 }

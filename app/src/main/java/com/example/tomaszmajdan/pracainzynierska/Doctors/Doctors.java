@@ -85,14 +85,12 @@ public class Doctors extends BaseAdapter {
 
         TextView godzTxt = (TextView) convertView.findViewById(R.id.godz_wizyt);
 
-
-
-
         // TextView rasaTxt = (TextView) convertView.findViewById(R.id.descTxt4);
 
         //  TextView mascTxt = (TextView) convertView.findViewById(R.id.propellantTxt);
 
         final Upcomings u= (Upcomings) this.getItem(position);
+
         imieTxt.setText(u.getName());
         descTxt.setText(u.getDesc());
         roomTxt.setText(u.getRoom());

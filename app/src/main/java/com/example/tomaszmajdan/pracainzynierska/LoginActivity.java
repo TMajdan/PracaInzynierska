@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -44,12 +43,12 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         //if the objects getcurrentuser method is not null
         //means user is already logged in
-        if(firebaseAuth.getCurrentUser() != null){
-            //close this activity
-            finish();
-            //opening profile activity
-            startActivity(new Intent(getApplicationContext(), UserEdit.class));
-        }
+//        if(firebaseAuth.getCurrentUser() != null){
+//            //close this activity
+//            finish();
+//            //opening profile activity
+//            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+//        }
 
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -128,7 +127,7 @@ public class LoginActivity extends Activity implements View.OnClickListener {
 
         if(view == textViewSignup){
             finish();
-            startActivity(new Intent(this, RegisterActivity.class));
+            startActivity(new Intent(this, PhoneActivity.class));
         }
     }
 }

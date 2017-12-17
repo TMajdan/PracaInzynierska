@@ -1,12 +1,12 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
-import com.example.tomaszmajdan.pracainzynierska.MainActivity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * Created by tomas on 25.11.2017.
  */
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class
 Visits {
 
@@ -18,9 +18,21 @@ Visits {
     private String status;
     private String room;
     private String rodzajwizyty;
-    private String zalecenia;
-    private String recepty;
+    private String zaleceniaUwagi;
+    private String Lek;
     private String key;
+    private String dawkaLeku;
+
+
+    public String getDawkaLeku() {
+        return dawkaLeku;
+    }
+
+    public void setDawkaLeku(String dawkaLeku) {
+        this.dawkaLeku = dawkaLeku;
+    }
+
+
 
 
     public String getKey() {
@@ -33,20 +45,20 @@ Visits {
 
 
 
-    public String getZalecenia() {
-        return zalecenia;
+    public String getZaleceniaUwagi() {
+        return zaleceniaUwagi;
     }
 
-    public void setZalecenia(String zalecenia) {
-        this.zalecenia = zalecenia;
+    public void setZaleceniaUwagi(String zaleceniaUwagi) {
+        this.zaleceniaUwagi = zaleceniaUwagi;
     }
 
-    public String getRecepty() {
-        return recepty;
+    public String getLek() {
+        return Lek;
     }
 
-    public void setRecepty(String recepty) {
-        this.recepty = recepty;
+    public void setLek(String lek) {
+        this.Lek = lek;
     }
 
 

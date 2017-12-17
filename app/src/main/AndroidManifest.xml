@@ -21,14 +21,11 @@
         <activity android:name=".UserInfo" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".PushActivity" />
-        <activity
-            android:name=".AnimalsActivity"
-            android:label="@string/title_activity_animals"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddAnimalActivity" />
+
         <activity android:name=".Animals.AnimalActivity" />
         <activity android:name=".Cure.Cure_Activity" />
+
+
         <activity android:name=".Welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,11 +35,8 @@
         </activity>
         <activity android:name=".Doctors.DoctorsActivity" />
         <activity android:name=".Visit.MyVisitActivity" />
-        <activity android:name=".myUserEdit.UserEditActivity" />
-        <activity
-            android:name=".Visit.VisitAppointment"
-            android:label="@string/title_activity_visit_appointment"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Visit.VisitAppointment" />
+        <activity android:name=".PhoneActivity"></activity>
     </application>
 
 </manifest>

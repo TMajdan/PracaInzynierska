@@ -1,16 +1,11 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.example.tomaszmajdan.pracainzynierska.Animals.MyHolder;
-import com.example.tomaszmajdan.pracainzynierska.Animals.PicassoClient;
-import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
 
 import java.util.ArrayList;
@@ -62,46 +57,47 @@ public class CustomAdapterVisit extends BaseAdapter {
         MyHolderVisit holder= new MyHolderVisit(convertview);
 
 
-        String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/doctors/"+ visits.get(i).getdoctor();
-        FirebaseClientVisit fcv = new FirebaseClientVisit(c,DB_URL);
-        fcv.getName(holder.doktor_id);
-        fcv.getRoom(holder.room_id);
 
-        String DB_URL2= "https://pracainzynierska-dd3c1.firebaseio.com/animals/"+ visits.get(i).getanimal();
-        FirebaseClientVisit fcv2 = new FirebaseClientVisit(c,DB_URL2);
-        fcv2.getName(holder.animal_id);
+            String DB_URL = "https://pracainzynierska-dd3c1.firebaseio.com/doctors/" + visits.get(i).getdoctor();
+            FirebaseClientVisit fcv = new FirebaseClientVisit(c, DB_URL);
+            fcv.getName(holder.doktor_id);
 
+            fcv.getRoom(holder.room_id);
 
-        holder.data_id.setText(visits.get(i).getdate());
-        holder.godzina_id.setText(visits.get(i).gettime());
-        holder.rodzaj_id.setText(visits.get(i).getrodzajwizyty());
-        holder.opis_id.setText(visits.get(i).getopis());
-        holder.status_id.setText(visits.get(i).getstatus());
+            String DB_URL2 = "https://pracainzynierska-dd3c1.firebaseio.com/animals/" + visits.get(i).getanimal();
+            FirebaseClientVisit fcv2 = new FirebaseClientVisit(c, DB_URL2);
+            fcv2.getName(holder.animal_id);
 
 
-
-        if(visits.get(i).getstatus().indexOf("ZAKOŃCZONO")>=0) {
-            holder.zalView.setVisibility(View.VISIBLE);
-            holder.ReceptView.setVisibility(View.VISIBLE);
-            holder.zalecenia=(visits.get(i).getZalecenia());
-            holder.recepta=(visits.get(i).getRecepty());
-        }
-
-        if(visits.get(i).getstatus().indexOf("OCZEKUJE")>=0){
-          holder.anulView.setVisibility(View.VISIBLE);
-          holder.visit_id.setText(visits.get(i).getKey());
-
-        }
+            holder.data_id.setText(visits.get(i).getdate());
+            holder.godzina_id.setText(visits.get(i).gettime());
+            holder.rodzaj_id.setText(visits.get(i).getrodzajwizyty());
+            holder.opis_id.setText(visits.get(i).getopis());
+            holder.status_id.setText(visits.get(i).getstatus());
 
 
+            if (visits.get(i).getstatus().indexOf("ZAKOŃCZONA") >= 0) {
+                holder.zalView.setVisibility(View.VISIBLE);
+                holder.ReceptView.setVisibility(View.VISIBLE);
+                holder.zaleceniaUwagi = (visits.get(i).getZaleceniaUwagi());
+                holder.lek = (visits.get(i).getLek());
+                holder.dawkaLeku = (visits.get(i).getDawkaLeku());
+            }
+
+            if (visits.get(i).getstatus().indexOf("OCZEKUJE") >= 0) {
+                holder.anulView.setVisibility(View.VISIBLE);
+                holder.visit_id.setText(visits.get(i).getKey());
+
+            }
+
+            if (visits.get(i).getstatus().indexOf("ODRZUCONA") >= 0) {
+                holder.anulView.setVisibility(View.VISIBLE);
+                holder.visit_id.setText(visits.get(i).getKey());
+
+            }
 
 
+            return convertview;
 
-
-
-
-
-
-        return convertview;
     }
 }

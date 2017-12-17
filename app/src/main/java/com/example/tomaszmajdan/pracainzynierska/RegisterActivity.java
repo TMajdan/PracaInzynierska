@@ -42,19 +42,18 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
         firebaseAuth = FirebaseAuth.getInstance();
 
         //if getCurrentUser does not returns null
-        if(firebaseAuth.getCurrentUser() != null){
-            //that means user is already logged in
-            //so close this activity
-            finish();
-
-            //and open profile activity
-            startActivity(new Intent(getApplicationContext(), UserEdit.class));
-        }
+//        if(firebaseAuth.getCurrentUser() != null){
+//            //that means user is already logged in
+//            //so close this activity
+//            finish();
+//
+//            //and open profile activity
+//            startActivity(new Intent(getApplicationContext(), UserEdit.class));
+//        }
 
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
 
@@ -62,7 +61,7 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
         //attaching listener to button
         buttonSignup.setOnClickListener(this);
-        textViewSignin.setOnClickListener(this);
+
     }
 
     private void registerUser(){
@@ -73,12 +72,12 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
 
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Proszę wpisać adres e-mail",Toast.LENGTH_LONG).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Proszę wpisać hasło",Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -114,10 +113,6 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
             registerUser();
         }
 
-        if(view == textViewSignin){
-            //open login activity when user taps on the already registered textview
-            startActivity(new Intent(this, LoginActivity.class));
-        }
 
     }
 }

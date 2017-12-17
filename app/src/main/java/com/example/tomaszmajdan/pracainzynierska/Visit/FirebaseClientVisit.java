@@ -7,8 +7,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.CustomAdapter;
-import com.example.tomaszmajdan.pracainzynierska.Animals.Dog;
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -74,7 +75,7 @@ public class FirebaseClientVisit {
             }
         });
     }
-
+    @JsonIgnoreProperties(ignoreUnknown = true)
     public void getupdates(DataSnapshot dataSnapshot){
 
         visits.clear();
@@ -91,8 +92,9 @@ public class FirebaseClientVisit {
             v.setopis(ds.getValue(Visits.class).getopis());
             v.setanimal(ds.getValue(Visits.class).getanimal());
             v.setrodzajwizyty(ds.getValue(Visits.class).getrodzajwizyty());
-             v.setZalecenia(ds.getValue(Visits.class).getZalecenia());
-             v.setRecepty(ds.getValue(Visits.class).getRecepty());
+             v.setZaleceniaUwagi(ds.getValue(Visits.class).getZaleceniaUwagi());
+             v.setLek(ds.getValue(Visits.class).getLek());
+             v.setDawkaLeku(ds.getValue(Visits.class).getDawkaLeku());
             v.setKey(ds.getKey());
 
             visits.add(v);
@@ -119,7 +121,10 @@ public class FirebaseClientVisit {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Object r = dataSnapshot.child("name").getValue();
-                if(r != null) edit.setText(r.toString());
+                String test =r.toString();
+                if(r != null && r.toString()!=null) edit.setText(r.toString());
+
+
             }
 
             @Override

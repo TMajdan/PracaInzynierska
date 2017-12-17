@@ -72,6 +72,7 @@ public class MainActivity extends Activity {
             }
         });
 
+
         (findViewById(R.id.okienko4)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

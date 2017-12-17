@@ -10,6 +10,10 @@ public class Upcomings implements Serializable{
 
     String name, desc, room,shopmap,phone,godz;
 
+
+
+    String p,w,s,cz,pi,sob;
+
         //private String title,description,image;
     public Upcomings(){}
 
@@ -20,7 +24,53 @@ public class Upcomings implements Serializable{
         this.phone = phone;
         this.godz = godz;
     }
+    public String getP() {
+        return p;
+    }
 
+    public void setP(String p) {
+        this.p = p;
+    }
+
+    public String getW() {
+        return w;
+    }
+
+    public void setW(String w) {
+        this.w = w;
+    }
+
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
+
+    public String getCz() {
+        return cz;
+    }
+
+    public void setCz(String cz) {
+        this.cz = cz;
+    }
+
+    public String getPi() {
+        return pi;
+    }
+
+    public void setPi(String pi) {
+        this.pi = pi;
+    }
+
+    public String getSob() {
+        return sob;
+    }
+
+    public void setSob(String sob) {
+        this.sob = sob;
+    }
 
     public String getName() {
         return name;}

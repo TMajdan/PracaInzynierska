@@ -34,7 +34,7 @@ public class FirebaseDoctorsHelper extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup group, Bundle b)
     {
-        View view=inflater.inflate(R.layout.activity_doctors2,group,false);
+        final View view=inflater.inflate(R.layout.activity_doctors2,group,false);
         recyclerView=(RecyclerView)view.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
@@ -56,13 +56,15 @@ public class FirebaseDoctorsHelper extends Fragment {
         {
             @Override
             protected void populateViewHolder(DoctorsViewHolder viewHolder, Upcomings model, int position) {
+
                     viewHolder.setDoctor_name(model.getName());
                     viewHolder.setDoctor_desc(model.getDesc());
                     viewHolder.setNr_room(model.getRoom());
                     viewHolder.setPhone_call(model.getPhone());
                     viewHolder.setGodz(model.getGodz());
+                }
 
-            }
+
         };
 
 

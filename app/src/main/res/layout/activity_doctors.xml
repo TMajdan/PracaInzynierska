@@ -141,6 +141,18 @@
                     android:textAlignment="center"
                     android:textColor="#000" />
 
+                <Button
+                    android:id="@+id/harmonogram"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_toStartOf="@+id/recView"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_bg_rounded_corners"
+                    android:text="Harmonogram"
+                    android:textColor="@color/button_text_color"
+                    android:visibility="gone" />
+
                 <TextView
                     android:id="@+id/godz_wizyt"
                     android:layout_width="match_parent"
@@ -179,7 +191,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="TextView"
-                    android:textAlignment="textStart" />
+                    android:textAlignment="center"
+                    android:textColor="@color/bg_register" />
 
             </LinearLayout>
         </LinearLayout>

@@ -25,10 +25,6 @@ public class SendVisit {
         this.status = status;
     }
 
-
-
-
-
     public String getDoctor() {
         return doctor;
     }

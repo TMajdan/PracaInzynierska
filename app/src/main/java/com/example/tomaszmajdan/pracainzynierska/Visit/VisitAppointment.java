@@ -24,6 +24,7 @@ import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -103,21 +104,27 @@ public class VisitAppointment extends Activity {
         rodzajwizyty(dropdown3);
 
         mFirebaseDatabase.addChildEventListener(new ChildEventListener() {
-
+            @JsonIgnoreProperties(ignoreUnknown = true)
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 String nowy = dataSnapshot.child("name").getValue().toString();
-                String id = dataSnapshot.getKey().toString();
-                doctors = addElement(doctors, nowy);
-                doc = addElement(doc, id);
-                func(dropdown, doctors);
+                if(!nowy.equals("")) {
+                    String id = dataSnapshot.getKey().toString();
+                    doctors = addElement(doctors, nowy);
+                    doc = addElement(doc, id);
+                    func(dropdown, doctors);
+                }
             }
+            @JsonIgnoreProperties(ignoreUnknown = true)
             @Override
             public void onChildChanged(DataSnapshot dataSnapshot, String s) {}
+            @JsonIgnoreProperties(ignoreUnknown = true)
             @Override
             public void onChildRemoved(DataSnapshot dataSnapshot) {}
+            @JsonIgnoreProperties(ignoreUnknown = true)
             @Override
             public void onChildMoved(DataSnapshot dataSnapshot, String s) {}
+            @JsonIgnoreProperties(ignoreUnknown = true)
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
@@ -185,7 +192,7 @@ public class VisitAppointment extends Activity {
         final DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear,int dayOfMonth) {
-                // TODO Auto-generated method stub
+
                 myCalendar.set(Calendar.YEAR, year);
                 myCalendar.set(Calendar.MONTH, monthOfYear);
                 myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);

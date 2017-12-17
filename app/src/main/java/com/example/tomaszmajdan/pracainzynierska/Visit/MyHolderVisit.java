@@ -1,19 +1,10 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
-import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.firebase.client.Firebase;
 
@@ -25,10 +16,10 @@ import com.firebase.client.Firebase;
 
 public class MyHolderVisit {
 
-    TextView doktor_id, status_id, data_id, godzina_id, room_id, animal_id, rodzaj_id, opis_id, receptaText, zaleceniaText,visit_id;
+    TextView doktor_id, status_id, data_id, godzina_id, room_id, animal_id, rodzaj_id, opis_id, dawkowanieTxt, receptaText, zaleceniaText,visit_id;
     Button zalView, ReceptView, okBtn,anulView,anulBtn;
     Dialog dialog;
-    String zalecenia,recepta;
+    String zaleceniaUwagi, lek, dawkaLeku;
 
 
 
@@ -54,7 +45,7 @@ public class MyHolderVisit {
             @Override
             public void onClick(View view) {
 
-                displayDialog2(recepta);
+                displayDialog2(lek,dawkaLeku);
 
             }
         });
@@ -63,7 +54,7 @@ public class MyHolderVisit {
             @Override
             public void onClick(View view) {
 
-                displayDialog(zalecenia);
+                displayDialog(zaleceniaUwagi);
 
             }
         });
@@ -79,11 +70,11 @@ public class MyHolderVisit {
 
     }
 
-    private void displayDialog(String zalecenia) {
+    private void displayDialog(String zaleceniaUwagi) {
         dialog = MyVisitActivity.dialog;
         dialog.setContentView(R.layout.dialog_zalecenia);
         zaleceniaText = (TextView) dialog.findViewById(R.id.zalText);
-        zaleceniaText.setText(zalecenia);
+        zaleceniaText.setText(zaleceniaUwagi);
         okBtn = (Button) dialog.findViewById(R.id.okBtn);
         dialog.show();
         okBtn.setOnClickListener(new View.OnClickListener() {
@@ -94,11 +85,13 @@ public class MyHolderVisit {
         });
 
     }
-    private void displayDialog2(String recepta) {
+    private void displayDialog2(String Lek, String dawkaLeku) {
         dialog = MyVisitActivity.dialog;
         dialog.setContentView(R.layout.dialog_recepty);
         receptaText = (TextView) dialog.findViewById(R.id.recText);
-        receptaText.setText(recepta);
+        dawkowanieTxt = (TextView) dialog.findViewById(R.id.dawText);
+        receptaText.setText(Lek);
+        dawkowanieTxt.setText(dawkaLeku);
         okBtn = (Button) dialog.findViewById(R.id.okBtn);
         dialog.show();
         okBtn.setOnClickListener(new View.OnClickListener() {
@@ -126,9 +119,6 @@ public class MyHolderVisit {
 
                 firebase.removeValue();
                 dialog.dismiss();
-
-
-
 
 
             }
