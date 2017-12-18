@@ -270,9 +270,6 @@ public class VisitAppointment extends Activity {
     }
 
 
-
-
-
     String[] addElement(String[] org, String added) {
         String[] result = Arrays.copyOf(org, org.length +1);
         result[org.length] = added;

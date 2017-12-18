@@ -121,8 +121,8 @@ public class FirebaseClientVisit {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Object r = dataSnapshot.child("name").getValue();
-                String test =r.toString();
-                if(r != null && r.toString()!=null) edit.setText(r.toString());
+
+                if(r != null) edit.setText(r.toString());
 
 
             }

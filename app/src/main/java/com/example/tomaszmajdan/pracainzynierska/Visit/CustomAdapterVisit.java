@@ -85,12 +85,16 @@ public class CustomAdapterVisit extends BaseAdapter {
             }
 
             if (visits.get(i).getstatus().indexOf("OCZEKUJE") >= 0) {
+                holder.zalView.setVisibility(View.GONE);
+                holder.ReceptView.setVisibility(View.GONE);
                 holder.anulView.setVisibility(View.VISIBLE);
                 holder.visit_id.setText(visits.get(i).getKey());
 
             }
 
             if (visits.get(i).getstatus().indexOf("ODRZUCONA") >= 0) {
+                holder.zalView.setVisibility(View.GONE);
+                holder.ReceptView.setVisibility(View.GONE);
                 holder.anulView.setVisibility(View.VISIBLE);
                 holder.visit_id.setText(visits.get(i).getKey());
 

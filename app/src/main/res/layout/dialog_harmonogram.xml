@@ -18,10 +18,18 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="5dp"
+            android:layout_marginRight="40dp"
             android:text="Poniedziałek:"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_above="@+id/textView19"
+            android:layout_alignParentStart="true"
+            android:background="#c6cbcf"></View>
 
         <TextView
             android:id="@+id/textView15"
@@ -31,7 +39,15 @@
             android:layout_below="@+id/textView2"
             android:text="Wtorek:"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_above="@+id/textView17"
+            android:layout_alignParentStart="true"
+            android:background="#c6cbcf"></View>
 
         <TextView
             android:id="@+id/textView16"
@@ -41,7 +57,39 @@
             android:layout_below="@+id/textView26"
             android:text="Sobota:"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_above="@+id/textView26"
+            android:layout_alignParentStart="true"
+            android:background="#c6cbcf"></View>
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_above="@+id/textView16"
+            android:layout_alignParentStart="true"
+            android:background="#c6cbcf"></View>
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_alignBottom="@+id/textView16"
+            android:layout_alignParentStart="true"
+            android:background="#c6cbcf"></View>
+
+        <View
+            android:id="@+id/view7"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView2"
+            android:background="#c6cbcf"></View>
 
         <TextView
             android:id="@+id/textView26"
@@ -51,7 +99,7 @@
             android:layout_below="@+id/textView19"
             android:text="Piątek:"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView19"
@@ -61,7 +109,7 @@
             android:layout_below="@+id/textView17"
             android:text="Czwartek:"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/textView17"
@@ -71,67 +119,77 @@
             android:layout_below="@+id/textView15"
             android:text="Środa:"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/ponTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textView2"
+            android:layout_alignParentRight="true"
             android:layout_toEndOf="@+id/textView2"
-            android:text="TextView"
+            android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/wtorTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="false"
             android:layout_alignStart="@+id/ponTxt"
             android:layout_below="@+id/ponTxt"
-            android:text="TextView"
+            android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/srodTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/wtorTxt"
             android:layout_below="@+id/wtorTxt"
-            android:text="TextView"
+            android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/czwTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/srodTxt"
             android:layout_below="@+id/srodTxt"
-            android:text="TextView"
+            android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/sobTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/piatTxt"
             android:layout_below="@+id/piatTxt"
-            android:text="TextView"
+            android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/piatTxt"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/czwTxt"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/czwTxt"
             android:layout_below="@+id/czwTxt"
-            android:text="TextView"
+            android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
-            android:textSize="20sp" />
+            android:textSize="24sp" />
     </RelativeLayout>
 
     <Button

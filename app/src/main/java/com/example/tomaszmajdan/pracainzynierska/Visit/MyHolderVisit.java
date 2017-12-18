@@ -1,6 +1,7 @@
 package com.example.tomaszmajdan.pracainzynierska.Visit;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -116,8 +117,8 @@ public class MyHolderVisit {
             public void onClick(View view) {
                 String DB_URL= "https://pracainzynierska-dd3c1.firebaseio.com/visits/"+visit_id.getText().toString();
                 Firebase firebase = new Firebase(DB_URL);
-
                 firebase.removeValue();
+                view.getContext().startActivity(new Intent(view.getContext(), MyVisitActivity.class));
                 dialog.dismiss();
 
 

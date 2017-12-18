@@ -31,6 +31,14 @@
             android:textColor="@color/cardview_dark_background"
             android:textSize="22sp" />
 
+        <View
+            android:id="@+id/view8"
+            android:layout_width="match_parent"
+            android:layout_height="0.2dp"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/medicine"
+            android:background="#c6cbcf"></View>
+
         <TextView
             android:id="@+id/dawText"
             android:layout_width="wrap_content"

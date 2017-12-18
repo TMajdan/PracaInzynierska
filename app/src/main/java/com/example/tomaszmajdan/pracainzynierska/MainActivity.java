@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
+import com.example.tomaszmajdan.pracainzynierska.ClinicDoctors.MyDoctorsActivity;
 import com.example.tomaszmajdan.pracainzynierska.Cure.CureDialog;
 import com.example.tomaszmajdan.pracainzynierska.Cure.Cure_Activity;
 import com.example.tomaszmajdan.pracainzynierska.Doctors.Doctors;
@@ -68,7 +69,7 @@ public class MainActivity extends Activity {
         (findViewById(R.id.okienko3)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(v.getContext(), DoctorsActivity.class));
+                startActivity(new Intent(v.getContext(), MyDoctorsActivity.class));
             }
         });
 

@@ -21,11 +21,8 @@
         <activity android:name=".UserInfo" />
         <activity android:name=".ForgotPasswordActivity" />
         <activity android:name=".MainActivity" />
-
         <activity android:name=".Animals.AnimalActivity" />
         <activity android:name=".Cure.Cure_Activity" />
-
-
         <activity android:name=".Welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,7 +33,8 @@
         <activity android:name=".Doctors.DoctorsActivity" />
         <activity android:name=".Visit.MyVisitActivity" />
         <activity android:name=".Visit.VisitAppointment" />
-        <activity android:name=".PhoneActivity"></activity>
+        <activity android:name=".PhoneActivity" />
+        <activity android:name=".ClinicDoctors.MyDoctorsActivity"></activity>
     </application>
 
 </manifest>
