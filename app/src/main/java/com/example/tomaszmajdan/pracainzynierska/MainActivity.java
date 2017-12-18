@@ -13,8 +13,6 @@ import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
 import com.example.tomaszmajdan.pracainzynierska.ClinicDoctors.MyDoctorsActivity;
 import com.example.tomaszmajdan.pracainzynierska.Cure.CureDialog;
 import com.example.tomaszmajdan.pracainzynierska.Cure.Cure_Activity;
-import com.example.tomaszmajdan.pracainzynierska.Doctors.Doctors;
-import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
 import com.example.tomaszmajdan.pracainzynierska.Visit.MyVisitActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

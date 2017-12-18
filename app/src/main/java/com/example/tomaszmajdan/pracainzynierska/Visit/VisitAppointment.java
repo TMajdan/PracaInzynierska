@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.tomaszmajdan.pracainzynierska.Animals.AnimalActivity;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
-import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
+import com.example.tomaszmajdan.pracainzynierska.ClinicDoctors.MyDoctorsActivity;
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

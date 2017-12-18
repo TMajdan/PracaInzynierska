@@ -19,7 +19,7 @@ import android.widget.TextView;
 import com.example.tomaszmajdan.pracainzynierska.Animals.CustomAdapter;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseClient;
 import com.example.tomaszmajdan.pracainzynierska.Animals.FirebaseHelper;
-import com.example.tomaszmajdan.pracainzynierska.Doctors.FirebaseDoctorsHelper;
+
 import com.example.tomaszmajdan.pracainzynierska.MainActivity;
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.fasterxml.jackson.databind.DeserializationConfig;

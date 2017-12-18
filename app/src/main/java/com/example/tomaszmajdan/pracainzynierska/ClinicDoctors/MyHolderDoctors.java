@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.tomaszmajdan.pracainzynierska.Doctors.DoctorsActivity;
+
 import com.example.tomaszmajdan.pracainzynierska.R;
 import com.example.tomaszmajdan.pracainzynierska.ClinicDoctors.MyDoctorsActivity;
 import com.firebase.client.Firebase;
