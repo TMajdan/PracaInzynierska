@@ -125,9 +125,9 @@
             android:id="@+id/ponTxt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/textView2"
-            android:layout_alignParentRight="true"
-            android:layout_toEndOf="@+id/textView2"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="37dp"
+            android:layout_toEndOf="@+id/textView19"
             android:text="Niedostępny"
             android:textColor="@color/cardview_dark_background"
             android:textSize="24sp" />

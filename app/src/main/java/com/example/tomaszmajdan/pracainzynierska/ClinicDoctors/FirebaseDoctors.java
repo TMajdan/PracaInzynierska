@@ -3,11 +3,9 @@ package com.example.tomaszmajdan.pracainzynierska.ClinicDoctors;
 import android.content.Context;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.tomaszmajdan.pracainzynierska.ClinicDoctors.CustomAdapterDoctors;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -82,6 +80,10 @@ public class FirebaseDoctors {
         for(DataSnapshot ds :dataSnapshot.getChildren()){
 
             //if(ds.child("doctors").getValue() != null && ds.child("animal").getValue().toString().contains(MainActivity.userID)) {
+            String exc=ds.child("name").getValue().toString();
+
+            if(!exc.isEmpty())
+            {
                 Doc d = new Doc();
                 d.setName(ds.getValue(Doc.class).getName());
                 d.setDesc(ds.getValue(Doc.class).getDesc());
@@ -89,16 +91,16 @@ public class FirebaseDoctors {
                 d.setGodz(ds.getValue(Doc.class).getGodz());
                 d.setRoom(ds.getValue(Doc.class).getRoom());
 
-            d.setP(ds.getValue(Doc.class).getP());
-            d.setW(ds.getValue(Doc.class).getW());
-            d.setS(ds.getValue(Doc.class).getS());
-            d.setCz(ds.getValue(Doc.class).getCz());
-            d.setPi(ds.getValue(Doc.class).getPi());
-            d.setSob(ds.getValue(Doc.class).getSob());
-
+                d.setdrWorkMonday(ds.getValue(Doc.class).getdrWorkMonday());
+                d.setdrWorkTuesday(ds.getValue(Doc.class).getdrWorkTuesday());
+                d.setdrWorkWednesday(ds.getValue(Doc.class).getdrWorkWednesday());
+                d.setdrWorkThursday(ds.getValue(Doc.class).getdrWorkThursday());
+                d.setdrWorkFriday(ds.getValue(Doc.class).getdrWorkFriday());
+                d.setdrWorkSaturday(ds.getValue(Doc.class).getdrWorkSaturday());
 
 
                 docs.add(d);
+            }
 
             }
 

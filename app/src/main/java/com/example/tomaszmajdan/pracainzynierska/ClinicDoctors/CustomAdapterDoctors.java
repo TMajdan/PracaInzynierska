@@ -64,12 +64,12 @@ public class CustomAdapterDoctors extends BaseAdapter {
         holder.textView_room.setText(docs.get(i).getRoom());
         holder.textView_phone.setText(docs.get(i).getPhone());
 
-        holder.p= (docs.get(i).getP());
-        holder.w= (docs.get(i).getW());
-        holder.s= (docs.get(i).getS());
-        holder.cz= (docs.get(i).getCz());
-        holder.pi= (docs.get(i).getPi());
-        holder.sob= (docs.get(i).getSob());
+        holder.drWorkMonday = (docs.get(i).getdrWorkMonday());
+        holder.drWorkTuesday = (docs.get(i).getdrWorkTuesday());
+        holder.drWorkWednesday = (docs.get(i).getdrWorkWednesday());
+        holder.drWorkThursday = (docs.get(i).getdrWorkThursday());
+        holder.drWorkFriday = (docs.get(i).getdrWorkFriday());
+        holder.drWorkSaturday= (docs.get(i).getdrWorkSaturday());
 
 
         return convertview;

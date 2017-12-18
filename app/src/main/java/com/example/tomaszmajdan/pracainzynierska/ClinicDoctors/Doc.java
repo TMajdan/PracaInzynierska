@@ -10,57 +10,57 @@ public class Doc {
 
     String name, desc, room,phone,godz;
 
-    String p,w,s,cz,pi,sob;
+    String drWorkMonday,drWorkTuesday,drWorkWednesday,drWorkThursday,drWorkFriday,drWorkSaturday;
 
     //private String title,description,image;
     public Doc(){}
 
-    public String getP() {
-        return p;
+    public String getdrWorkMonday() {
+        return drWorkMonday;
     }
 
-    public void setP(String p) {
-        this.p = p;
+    public void setdrWorkMonday(String drWorkMonday) {
+        this.drWorkMonday = drWorkMonday;
     }
 
-    public String getW() {
-        return w;
+    public String getdrWorkTuesday() {
+        return drWorkTuesday;
     }
 
-    public void setW(String w) {
-        this.w = w;
+    public void setdrWorkTuesday(String drWorkTuesday) {
+        this.drWorkTuesday = drWorkTuesday;
     }
 
-    public String getS() {
-        return s;
+    public String getdrWorkWednesday() {
+        return drWorkWednesday;
     }
 
-    public void setS(String s) {
-        this.s = s;
+    public void setdrWorkWednesday(String drWorkWednesday) {
+        this.drWorkWednesday = drWorkWednesday;
     }
 
-    public String getCz() {
-        return cz;
+    public String getdrWorkThursday() {
+        return drWorkThursday;
     }
 
-    public void setCz(String cz) {
-        this.cz = cz;
+    public void setdrWorkThursday(String drWorkThursday) {
+        this.drWorkThursday = drWorkThursday;
     }
 
-    public String getPi() {
-        return pi;
+    public String getdrWorkFriday() {
+        return drWorkFriday;
     }
 
-    public void setPi(String pi) {
-        this.pi = pi;
+    public void setdrWorkFriday(String drWorkFriday) {
+        this.drWorkFriday = drWorkFriday;
     }
 
-    public String getSob() {
-        return sob;
+    public String getdrWorkSaturday() {
+        return drWorkSaturday;
     }
 
-    public void setSob(String sob) {
-        this.sob = sob;
+    public void setdrWorkSaturday(String drWorkSaturday) {
+        this.drWorkSaturday = drWorkSaturday;
     }
 
     public String getName() {
